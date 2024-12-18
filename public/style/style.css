@@ -25,7 +25,9 @@ body {
     top: 0;
     left: 0;
 }
-
+.marker{
+    left: 100px;
+}
 .nav>a:hover {
     cursor: pointer;
 }

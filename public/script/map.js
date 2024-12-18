@@ -8,46 +8,58 @@ bgmap.addEventListener('click', function (event) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const coordinates = [{ left: '19.5%', top: '39.5%', place: 'Havana, cuba' }, { left: '89%', top: '31%', place: 'Tokyo, Yapan' }, { left: '54.3%', top: '19%', place: 'Minsk, Belarus' }]
 
+
+
+    const element = document.querySelector('.bgmap')
+    const style = window.getComputedStyle(element);
+    const container = document.querySelector('.bgmap');
+
+
+
+    for (let i = 0; i < 3; i++) {
+        const img = document.createElement('img');
+        img.style.left = coordinates[i].left
+        img.style.top = coordinates[i].top
+        img.src = '../src/svg/mapmarker.svg';
+        img.classList.add("marker")
+        container.appendChild(img);
+    }
+
+    const overlays = document.querySelectorAll('.marker');
 
     window.addEventListener('resize', () => {
-        const marker = document.querySelector('.marker');
 
-        const element = document.querySelector('.bgmap'); // замените '.container' на ваш селектор
-        const elementWidth = element.offsetWidth;
-        const elementHeight = element.offsetHeight;
-
-        const style = window.getComputedStyle(element);
+        let horizontalOverflow, verticalOverflow;
         const backgroundImage = style.backgroundImage.slice(5, -2);
 
         const image = new Image();
         image.src = backgroundImage;
-        const imageWidth = image.width;
-        const imageHeight = image.height;
+        image.onload = () => {
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+            const imageWidth = image.width;
+            const imageHeight = image.height;
 
-        const elementAspectRatio = elementWidth / elementHeight;
-        const imageAspectRatio = imageWidth / imageHeight;
+            const containerAspectRatio = containerWidth / containerHeight;
+            const imageAspectRatio = imageWidth / imageHeight;
 
-        let scale;
-        if (elementAspectRatio > imageAspectRatio) {
-            scale = elementWidth / imageWidth;
-        } else {
-            scale = elementHeight / imageHeight;
-        }
+            if (containerAspectRatio > imageAspectRatio) {
+                const scaledImageHeight = containerWidth / imageAspectRatio;
+                verticalOverflow = (scaledImageHeight - containerHeight) / scaledImageHeight * 100;
+                horizontalOverflow = 0;
+            } else {
+                const scaledImageWidth = containerHeight * imageAspectRatio;
+                horizontalOverflow = (scaledImageWidth - containerWidth) / scaledImageWidth * 100;
+                verticalOverflow = 0;
+            }
+            overlays.forEach((v, i) => {
+                console.log(horizontalOverflow);
 
-        const scaledImageWidth = imageWidth * scale;
-        const scaledImageHeight = imageHeight * scale;
-        console.log("scaledImageWidth ", scaledImageWidth);
-        console.log("elementWidth ", elementWidth);
-        console.log("imageWidth ", imageWidth);
-
-        const horizontalOverflow = Math.round((scaledImageWidth - elementWidth) / elementWidth * 100)
-        const verticalOverflow = Math.round((scaledImageHeight - elementHeight) / imageHeight * 100)
-
-        console.log(`Horizontal overflow: ${horizontalOverflow}%`);
-
-
-        marker.style.top = `${40 - verticalOverflow}%`
-        marker.style.left = `${40 - horizontalOverflow}%`
+                v.style.left = `${Number((coordinates[i].left).slice(0, -1)) - horizontalOverflow / 2}%`
+                v.style.top = `${Number((coordinates[i].top).slice(0, -1)) - verticalOverflow / 2}%`
+            })
+        };
     })
 })
