@@ -1,0 +1,103 @@
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 239, 230);
+}
+
+.window {
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    background: rgb(255, 255, 255);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.window>div>span>input {
+    background: rgb(255, 222, 204);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    margin: 7px 0 0 10px;
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    padding: 10px;
+    width: -webkit-fill-available;
+}
+
+.window>div>span {
+    display: block;
+    text-wrap: nowrap;
+}
+
+.window>div {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: min-content;
+}
+
+.window>div>span>p {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+}
+button:focus,
+input:focus {
+    animation: click ease-in-out .3s alternate-reverse forwards;
+}
+button:hover{
+    cursor: pointer;
+}
+
+@keyframes click {
+    from {
+        scale: 1;
+    }
+
+    to {
+        scale: .95
+    }
+}
+
+.window>p {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 130%;
+    margin-bottom: 134px;
+}
+
+button {
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    padding: 10px;
+    background: rgb(255, 190, 153);
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    width: max-content;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 15px;
+    align-self: flex-end;
+    margin-top: 20px;
+}
+

@@ -1,0 +1,13 @@
+<title>Handlebars Example</title>
+<link rel="stylesheet" href="/style/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+<div class="nav">
+    <h1>Hello {{nick}} from {{location}}</h1>
+    <a href="./map">map</a>
+    <a href="./catalog">catalog</a>
+</div>
+<div class="bgmap" style="background-image: url('{{imgurl}}')"><img class="marker" src="{{mapmarker}}" alt=""></div>
+<script src="/script/map.js"></script>
