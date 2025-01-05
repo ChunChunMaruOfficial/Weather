@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/style/welcomestyle.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="../src/favicon.ico" type="image/x-icon">
 <link
     href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
@@ -11,13 +12,22 @@
     <div>
         <span>
             <p>Please, enter your nickname here</p>
-            <img src="{{nick}}" alt=""><input type="text" id="nick" placeholder="example: ChunChunMaru">
+            <img src="{{nick}}" alt="Nickname Icon"><input type="text" id="nicknamer" placeholder="example: ChunChunMaru">
         </span>
         <span>
             <p>And enter your living place</p>
-            <img src="{{marker}}" alt=""><input type="text" id="place" placeholder="example: Tokyo, Yapan">
+            <img src="{{marker}}" alt="Location Icon"><input type="text" id="place" placeholder="example: Tokyo, Japan">
         </span>
     </div>
-    <button id="send"><img src="{{button}}" alt=""> Enter</button>
+    <div id="second">
+        <span>Celsius<label><input type="checkbox" class="ios-switch green bigswitch" />
+            <div>
+                <div></div>
+            </div>
+        </label>Fahrenheit</span>
+        <div>
+        <button id="skip"><img src="../src/svg/system/cancel.svg" alt="">skip</button>
+        <button id="send"><img src="../src/svg/system/checkcircle.svg" alt=""> Enter</button>
+    </div></div>
     <script src="/script/welcome.js"></script>
 </div>

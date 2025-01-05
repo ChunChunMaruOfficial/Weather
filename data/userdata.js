@@ -1,8 +1,14 @@
 const userdata = {
     location: '',
     nickname: '',
-    setlocation: function(loc, name){
-        this.location = loc
+    grad: '',
+    setlocation: function(loc){
+        userdata.location = loc
+    },
+    setgrad: function(gradus){
+        this.grad = gradus
+    },
+    setnickname: function(name){
         this.nickname = name
     }
 }

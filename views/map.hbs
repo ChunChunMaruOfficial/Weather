@@ -1,13 +1,62 @@
-<title>Handlebars Example</title>
+<title>World's map</title>
 <link rel="stylesheet" href="/style/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="icon" href="../src/favicon.ico" type="image/x-icon">
+<link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
 
 <div class="nav">
     <h1>Hello {{nick}} from {{location}}</h1>
-    <a href="./map">map</a>
-    <a href="./catalog">catalog</a>
+    <a href="./"><button>Enter page</button></a>
+    <a href="./userpage"><button>User page</button></a>
+
+    <a href="./catalog"><button>catalog</button></a>
+    <button id="plussize">+</button>
+    <button id="minussize">-</button>
 </div>
-<div class="bgmap" style="background-image: url('{{imgurl}}')"></div>
+<div class="container">
+    <div class="bgmap" style="background-image: url('../src/img/map.png');
+    width: 100%;">
+
+    </div>
+</div>
+<div class="info">
+    <p id="targettime"></p>
+    <span>
+        <span><img src="" id="daystatus" alt="">
+            <p id="targetplace"></p>
+        </span>
+        <span><img src="" id="tempstate" alt="">
+            <p id="targettemp"></p>
+        </span>
+        <span><img src="" id="humidityimg" alt="">
+            <p id="humiditytext"></p>
+        </span>
+        <span><img src="" id="skytext" alt="">
+            <p id="targetskytext"></p>
+        </span>
+        <span><img src="" id="windstate" alt="">
+            <p id="targetwind"></p>
+        </span>
+    </span>
+    <span><img src="" id="point" alt="">
+        <p id="targetlocation"></p>
+    </span>
+    <div class="forecast">
+        <div class="forecastchild">
+            <div class="card"></div>
+            <div id="points">
+                <div class="point selected"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+        </div>
+        <div class="forecastmenu"><img src="../src/svg/system/backarrow.svg" alt=""></div>
+    </div>
+
+</div>
 <script src="/script/map.js"></script>

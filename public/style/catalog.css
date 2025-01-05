@@ -1,0 +1,265 @@
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100vw;
+    background: rgb(255, 239, 230);
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+#catalogitems {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 25px 15px 15px 15px;
+}
+
+#catalogitems>div {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+}
+
+#catalogitems>div * {
+    width: min-content;
+    text-wrap: nowrap;
+}
+
+#catalogitems>div>span:first-of-type {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: small;
+    align-items: center;
+    gap: 7px;
+    color: #a9a9a9;
+}
+
+select,
+input {
+    height: min-content;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    padding: 10px;
+    transition: .2s ease-in-out;
+}
+
+button {
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter {
+    position: absolute;
+    left: 102%;
+    top: 15px;
+    gap: 15px;
+    width: min-content;
+    display: flex;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    flex-direction: column;
+    padding: 15px;
+}
+
+
+
+.filter>p {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 130%;
+}
+
+.filter>div {
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.filter span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.filter span>p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#count{
+    position: absolute;
+    right: 50px;
+    color: rgb(255, 141, 77);
+    font-size: 28px;
+    font-weight: 800;
+}
+
+#load{
+    width: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+button {
+    height: 54px;
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    padding: 10px;
+    background: rgb(255, 190, 153);
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    width: max-content;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 15px;
+    align-self: flex-end;
+    transition: .2s ease-in-out;
+}
+
+input:hover[type="checkbox"],
+button:hover {
+    cursor: pointer;
+}
+
+#accept{
+    width: -webkit-fill-available;
+}
+
+input:hover,
+button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
+}
+
+
+input:active,
+button:active {
+    transform: translate(4.5px, 4.5px);
+    box-shadow: 1.5px 1.5px 0px 1px rgb(30, 30, 30);
+}
+
+#back {
+    height: 16px;
+}
+
+input[type="checkbox"]{
+    box-shadow: 2px 2px 0px 1px rgb(30, 30, 30);
+}
+
+#catalogitems>div>span:first-of-type>img {
+    height: 10px;
+}
+
+#catalogitems>div>p:first-of-type {
+    color: rgb(255, 141, 77);
+    font-size: 82px;
+    font-weight: 800;
+}
+
+#catalogitems>div>span:not(#catalogitems>div>span:first-of-type) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background: rgb(255, 222, 204);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    gap: 7px;
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px 1px rgb(30, 30, 30);
+    padding: 10px;
+    width: -webkit-fill-available;
+    justify-content: center;
+}
+
+
+#catalogitems>div>span:last-of-type {
+    flex-direction: column !important;
+}
+
+#catalogitems>div>span:last-of-type>span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 7px;
+}
+
+#closing{
+    position: absolute;
+    height: 40px;
+    padding: 5px;
+}
+
+.show {
+    animation: showing ease-in-out .3s forwards;
+}
+
+@keyframes showing {
+    from {
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-120%);
+    }
+}
+
+.hide {
+    animation: hide ease-in-out .3s forwards;
+}
+
+@keyframes hide {
+    from {
+        transform: translateX(-120%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}

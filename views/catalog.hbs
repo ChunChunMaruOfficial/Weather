@@ -1,0 +1,82 @@
+<title>Catalog</title>
+<link rel="stylesheet" href="/style/catalog.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="../src/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../src/favicon.ico" type="image/x-icon">
+<link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+
+<div class="nav">
+    <a href="./map"><button><img id="back" src="../src/svg/system/backarrow.svg" alt="<-"></button></a> <button id="allsearch">All</button> <input id="searchtext" placeholder="Name of country/capital" type="text"><button id="filters"><img src="../src/svg/system/filters.svg" alt=""></button> <button id="searchbutton"><img src="../src/svg/system/search.svg" alt=""></button> <p id="count"></p>
+    <div class="filter">
+        
+        <button id="closing" ><img src="../src/svg/system/close.svg"  alt=""></button>
+        <p>Temperature</p>
+        <span>
+            <p>Max</p><input id="maxtemp" placeholder="max value" type="number">
+        </span>
+        <span>
+            <p>Min</p><input id="mintemp" placeholder="min value" type="number">
+        </span>
+        <p>Feels like temperature</p>
+        <span>
+            <p>Max</p><input id="maxfeelstem" placeholder="max value" type="number">
+        </span>
+        <span>
+            <p>Min</p><input id="minfeelstem" placeholder="min value" type="number">
+        </span>
+        <p>Humidity</p>
+        <span>
+            <p>Max</p><input id="maxhumidity" placeholder="max value" type="number">
+        </span>
+        <span>
+            <p>Min</p><input id="minhumidity" placeholder="min value" type="number">
+        </span>
+        <p>Wind speed</p>
+        <span>
+            <p>Max</p><input id="maxwind" placeholder="max value" type="number">
+        </span>
+        <span>
+            <p>Min</p><input id="minwind" placeholder="min value" type="number">
+        </span>
+        <p>Wind direction</p>
+        <select name="Wind_direction" id="Wind_direction">
+            <option value="all">All</option>
+            <option value="East">East</option>
+            <option value="North">North</option>
+            <option value="Northeast">Northeast</option>
+            <option value="Northwest">Northwest</option>
+            <option value="South">South</option>
+            <option value="Southeast">Southeast</option>
+            <option value="Southwest">Southwest</option>
+            <option value="West">West</option>
+        </select>
+        <p>Weather</p>
+        <div>
+            <span> <input type="checkbox" id="Clear"><label for="Clear">Clear</label></span>
+            <span> <input type="checkbox" id="Cloudy"><label for="Cloudy">Cloudy</label></span>
+            <span> <input type="checkbox" id="Fog"><label for="Fog">Fog</label></span>
+            <span> <input type="checkbox" id="Haze"><label for="Haze">Haze</label></span>
+            <span> <input type="checkbox" id="Heavy_t-storms"><label for="Heavy_t-storms">Heavy t-storms</label></span>
+            <span> <input type="checkbox" id="Light_rain_and_snow"><label for="Light_rain_and_snow">Light rain and snow</label></span>
+            <span> <input type="checkbox" id="Light_rain"><label for="Light_rain">Light rain</label></span>
+            <span> <input type="checkbox" id="Light_snow"><label for="Light_snow">Light snow</label></span>
+            <span> <input type="checkbox" id="Mostly_clear"><label for="Mostly_clear">Mostly clear</label></span>
+            <span> <input type="checkbox" id="Mostly_cloudy"><label for="Mostly_cloudy">Mostly cloudy</label></span>
+            <span> <input type="checkbox" id="Mostly_sunny"><label for="Mostly_sunny">Mostly sunny</label></span>
+            <span> <input type="checkbox" id="Partly_cloudy"><label for="Partly_cloudy">Partly cloudy</label></span>
+            <span> <input type="checkbox" id="Partly_sunny"><label for="Partly_sunny">Partly sunny</label></span>
+            <span> <input type="checkbox" id="Rain_and_snow_showers"><label for="Rain_and_snow_showers">Rain and snow showers</label></span>
+            <span> <input type="checkbox" id="Rain_showers"><label for="Rain_showers">Rain showers</label></span>
+            <span> <input type="checkbox" id="Rain"><label for="Rain">Rain</label></span>
+            <span> <input type="checkbox" id="Smoke"><label for="Smoke">Smoke</label></span>
+            <span> <input type="checkbox" id="Snow_showers"><label for="Snow_showers">Snow showers</label></span>
+            <span> <input type="checkbox" id="Sunny"><label for="Sunny">Sunny</label></span>
+        </div>
+        <button id="accept">Accept</button>
+    </div>
+</div>
+<div id="catalogitems"><img src="../src/loading.gif" id="load" alt=""></div>
+<script src="/script/catalog.js"></script>
