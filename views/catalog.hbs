@@ -1,0 +1,45 @@
+<title>Catalog</title>
+<link rel="stylesheet" href="/style/catalog.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="../src/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../src/favicon.ico" type="image/x-icon">
+<link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+
+<div class="nav">
+    <a href="./map"><button><img id="back" src="../src/svg/system/backarrow.svg" alt="<-"></button></a> <button
+        id="allsearch">All</button> <input id="searchtext" placeholder="Name of country/capital" type="text"><button
+        id="filters"><img src="../src/svg/system/filters.svg" alt=""></button> <button id="searchbutton"><img
+            src="../src/svg/system/search.svg" alt=""></button>
+    <p id="count"></p>
+    <div class="filter">
+
+        <button id="closing"><img src="../src/svg/system/close.svg" alt=""></button>
+        {{#each filter}}
+        <p>{{this.name}}</p>
+        <span>
+            <p>Max</p><input id="{{this.firstid}}" placeholder="max value" type="number">
+        </span>
+        <span>
+            <p>Min</p><input id="{{this.secondid}}" placeholder="min value" type="number">
+        </span>
+        {{/each}}
+        <p>Wind direction</p>
+        <select name="Wind_direction" id="Wind_direction">
+            {{#each Wind_direction}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <p>Weather</p>
+        <div>
+            {{#each Weather}}
+            <span> <input type="checkbox" id="{{this.id}}"><label for="{{this.id}}">{{this.text}}</label></span>
+            {{/each}}
+        </div>
+        <button id="accept">Accept</button>
+    </div>
+</div>
+<div id="catalogitems"><img src="../src/loading.gif" id="load" alt=""></div>
+<script src="/script/catalog.js"></script>

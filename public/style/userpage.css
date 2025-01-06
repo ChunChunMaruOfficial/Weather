@@ -1,0 +1,192 @@
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+}
+#closeeditnick,
+#closeeditplace{
+    margin-inline: 0;
+}
+
+.msg{
+    margin-block: auto;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.msg>a{
+    color: rgb(255, 141, 77);
+    font-weight: 700;
+}
+
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
+
+.wrapper {
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    background: rgb(255, 141, 77);
+    background: linear-gradient(273deg, rgba(255, 239, 230, 1) 0%, rgba(255, 141, 77, 0.78) 100%);
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#targettime {
+    font-size: small;
+}
+
+#targetplace {
+    font-weight: bold;
+    font-size: xxx-large;
+}
+
+.wrapper>div:nth-of-type(2) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 7px;
+}
+
+.wrapper>div:nth-of-type(2) * {
+    color: #FF8D4C;
+}
+
+.wrapper>div:nth-of-type(2)>span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    font-size: smaller;
+    align-items: center;
+}
+
+.wrapper>div:nth-of-type(2)>span>img {
+    height: 13px;
+}
+
+input{
+    color: black;
+    height: min-content;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    padding: 10px;
+    transition: .2s ease-in-out;
+}
+
+input:hover,
+button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
+}
+
+input:active,
+button:active {
+    transform: translate(4.5px, 4.5px);
+    box-shadow: 1.5px 1.5px 0px 1px rgb(30, 30, 30);
+}
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.wrapper>.info>span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 16px;
+    font-size: xx-large;
+}
+
+#forecast {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+#forecast>div {
+    gap: 15px;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid rgb(26, 26, 26);
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    background: rgb(255, 245, 240);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+b{
+    font-weight: bold;
+}
+
+button{
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 0px 1px rgb(30, 30, 30);
+    margin: 10px;
+    padding: 10px;
+    background: #ffff;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    transition: .3s ease-in-out;
+}
+
+button:hover{
+    cursor: pointer;
+    transform: translate(1.5px, 1.5px);
+    box-shadow: .5px .5px 0px 1px rgb(30, 30, 30);
+}
+
+#forecast>div>p{
+    font-size: 80px;
+}
+
+#forecast>div>div{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 7px;
+}
+
+#forecast>div * {
+    color: black;
+}
+
+#forecast>div>div>span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+#forecast>div>div>p:first-of-type{
+    font-size: smaller;
+}

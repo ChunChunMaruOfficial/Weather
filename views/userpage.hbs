@@ -1,0 +1,36 @@
+<title>Catalog</title>
+<link rel="stylesheet" href="/style/userpage.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="../src/favicon.ico" type="image/x-icon">
+<link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+
+   <a href="./map"> <button> <img src="{{backarrow}}" alt="">map</button></a>
+<div class="wrapper">
+    <div class="info">
+        <span><img src="{{nick}}" alt="">
+            <p id="nickelement">{{name}}</p>
+            <input type="text" class="hidden" value="{{name}}" id="nick" placeholder="example: Adam">
+            <button id="editnick"><img id="nickimg" src="../src/svg/system/edit.svg" alt=""></button>
+            <button class="hidden" id="closeeditnick"><img src="../src/svg/system/close.svg" alt=""></button>
+        </span>
+        <span><img src="{{earth}}" alt="">
+            <p id="locationelement">{{location}}</p>
+            <input type="text" class="hidden" value="{{location}}" id="place" placeholder="example: Tokyo, Japan">
+            <button id="editplace"><img id="locationimg" src="../src/svg/system/edit.svg" alt=""></button>
+            <button class="hidden" id="closeeditplace"><img src="../src/svg/system/close.svg" alt=""></button>
+        </span>
+    </div>
+    <div>
+        <span><img id="daystatus" src="" alt=""><p id="targettime"></p></span>
+        <p id="targetplace"></p>
+        <span><img src="" id="tempstate" alt=""><p id="targettemp"></p></span> 
+        <span><img src="" id="skytext" alt=""><p id="targetskytext"></p></span> 
+        <span><img src="" id="windstate" alt=""><p id="targetwind"></p></span>
+        <span><img src="" id="humidity" alt=""><p id="targethumidity"></p></span> 
+    </div>
+</div>
+    <div id="forecast"></div>
+<script src="script/userpage.js"></script>

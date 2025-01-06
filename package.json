@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "express": "^4.21.2",
+    "hbs": "^4.2.0",
+    "openweather-api-node": "^3.1.5",
+    "openweather-apis": "^4.5.0",
+    "util": "^0.12.5",
+    "weather-js": "^2.0.0",
+    "weathers-watch": "^1.0.7"
+  }
+}

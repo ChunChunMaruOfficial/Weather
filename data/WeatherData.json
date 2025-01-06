@@ -1,0 +1,82 @@
+[
+    {
+        "id": "Clear",
+        "text": "Clear"
+    },
+    {
+        "id": "Cloudy",
+        "text": "Cloudy"
+    },
+    {
+        "id": "Fog",
+        "text": "Fog"
+    },
+    {
+        "id": "Haze",
+        "text": "Haze"
+    },
+    {
+        "id": "Heavy_t-storms",
+        "text": "Heavy t-storms"
+    },
+    {
+        "id": "Light_rain_and_snow",
+        "text": "Light rain and snow"
+    },
+    {
+        "id": "Rain_and_snow",
+        "text": "Rain and snow"
+    },
+    {
+        "id": "Light_rain",
+        "text": "Light rain"
+    },
+    {
+        "id": "Light_snow",
+        "text": "Light snow"
+    },
+    {
+        "id": "Mostly_clear",
+        "text": "Mostly clear"
+    },
+    {
+        "id": "Mostly_cloudy",
+        "text": "Mostly cloudy"
+    },
+    {
+        "id": "Mostly_sunny",
+        "text": "Mostly sunny"
+    },
+    {
+        "id": "Partly_cloudy",
+        "text": "Partly cloudy"
+    },
+    {
+        "id": "Partly_sunny",
+        "text": "Partly sunny"
+    },
+    {
+        "id": "Rain_and_snow_showers",
+        "text": "Rain and snow showers"
+    },
+    {
+        "id": "Rain_showers",
+        "text": "Rain showers"
+    },
+    {
+        "id": "Rain",
+        "text": "Rain"
+    },
+    {
+        "id": "Smoke",
+        "text": "Smoke"
+    },
+    {
+        "id": "Snow_showers",
+        "text": "Snow showers"
+    },
+    {
+        "id": "Sunny",
+        "text": "Sunny"
+    }
+]
