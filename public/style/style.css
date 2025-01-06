@@ -30,8 +30,8 @@ body {
 
 .nav {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 0;
+    right: 0;
     z-index: 1;
     border: 2px solid rgb(38, 38, 38);
     border-radius: 10px;
@@ -265,8 +265,12 @@ button {
     color: #a9a9a9;
 }
 
+#loadmap{
+    width: 100px;
+    margin: auto auto;
+}
+
 .info>span:not(.info>span:last-of-type) {
-    display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 10px;
@@ -276,14 +280,20 @@ button {
     border: 2px solid rgb(38, 38, 38);
     box-shadow: 3px 3px 0px 1px rgb(30, 30, 30);
 }
-
+.info>span>span{
+    display: flex;
+}
 
 .info>span:last-of-type,
 .info>span>span {
-    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 7px;
     width: min-content;
     align-items: center;
+}
+.info>div,
+.info>p,
+.info>span{
+    display: none;
 }

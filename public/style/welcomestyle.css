@@ -46,6 +46,11 @@ body {
     text-wrap: nowrap;
 }
 
+.window>div:first-of-type {
+    margin-block: 70px;
+}
+
+
 .window>div {
     display: flex;
     flex-direction: column;
@@ -79,7 +84,6 @@ button:active {
     font-size: 48px;
     font-weight: 700;
     line-height: 130%;
-    margin-bottom: 134px;
 }
 
 button {

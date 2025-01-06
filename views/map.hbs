@@ -8,7 +8,9 @@
     rel="stylesheet">
 
 <div class="nav">
+    {{#if nick}}
     <h1>Hello {{nick}} from {{location}}</h1>
+    {{/if}}
     <a href="./"><button>Enter page</button></a>
     <a href="./userpage"><button>User page</button></a>
 
@@ -23,6 +25,7 @@
     </div>
 </div>
 <div class="info">
+    <img src="../src/loadmap.gif" id="loadmap" alt="">
     <p id="targettime"></p>
     <span>
         <span><img src="" id="daystatus" alt="">

@@ -1,24 +1,24 @@
 
 const answer = require('./GETmethods/getweather.js')
-
-
 const userdata = require("../../data/userdata.js")
+const fs = require('fs').promises;
+
+async function readData() {
+    const data = await fs.readFile('./data/WeatherData.json', 'utf-8');
+    return JSON.parse(data);
+}
+
 function GETmethod(req, res) {
     switch (req.path) {
         case '/':
-            res.render("welcomepage.hbs", {
-                nick: '../src/svg/system/user.svg',
-                marker: '../src/svg/usercard/marker.svg'
-            });
+            res.render("welcomepage.hbs");
             break
         case '/map':
-            console.log('MAAAp');
-            
             res.render("map.hbs", {
                 imgurl: '../src/img/map.png',
                 mapmarker: '../src/svg/mapmarker.svg',
-                nick: userdata.nickname,
-                location: userdata.location
+                nick: userdata.nickname ? userdata.nickname : '',
+                location: userdata.location ? userdata.location : '',
             });
             break
         case '/userpage':
@@ -31,7 +31,32 @@ function GETmethod(req, res) {
             });
             break;
         case '/catalog':
-            res.render("catalog.hbs");
+            res.render("catalog.hbs", {
+                filter: [
+                    {
+                        name: 'Temperature',
+                        firstid: 'maxtemp',
+                        secondid: 'mintemp',
+                    },
+                    {
+                        name: 'Feels like temperature',
+                        firstid: 'maxfeelstem',
+                        secondid: 'minfeelstem',
+                    },
+                    {
+                        name: 'Humidity',
+                        firstid: 'maxhumidity',
+                        secondid: 'minhumidity',
+                    },
+                    {
+                        name: 'Wind speed',
+                        firstid: 'maxwind',
+                        secondid: 'minwind',
+                    },
+                ],
+                Wind_direction: ['all', 'East','North', 'Northeast', 'Northwest', 'South', 'Southeast', 'Southwest', 'West'],
+                Weather: readData()
+            });
             break;
         case '/createallweather':
             answer(undefined, res)

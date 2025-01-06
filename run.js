@@ -19,9 +19,7 @@ app.use((req, res) => {
         case "GET":
             GETmethod(req, res)
             break;
-        case "POST":
-            console.log(req.body);
-            
+        case "POST":            
             POSTmethod(req, res)
             break;
         default:

@@ -1,24 +1,6 @@
 const bigswitch = document.querySelector(".bigswitch")
-const sendinfo = async () => {
-    location.pathname += 'map'
-    console.log('location')
-    fetch('/senduserloc', {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify({ loc: place.value })
-    })
-    console.log('nick is writed')
-    fetch('/sendusernick', {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify({ nick: nicknamer.value })
-    })
 
-    console.log('grad')
+const sendgrad = async () => {
     fetch('/sendusergrad', {
         method: "POST",
         headers: {
@@ -26,6 +8,24 @@ const sendinfo = async () => {
         },
         body: JSON.stringify({ gradus: bigswitch.checked ? "F" : 'C' })
     })
+}
+const sendinfo = async () => {
+    location.pathname += 'map'
+    fetch('/senduserloc', {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({ loc: place.value })
+    })
+    fetch('/sendusernick', {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({ nick: nicknamer.value })
+    })
+    sendgrad()
 }
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     skip.addEventListener("click", () => {
         location.pathname += 'map'
+        sendgrad()
     })
 
 })

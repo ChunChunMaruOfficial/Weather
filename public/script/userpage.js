@@ -61,11 +61,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.querySelector('#forecast').appendChild(card);
         });
     } else {
-        const elements = document.querySelectorAll('.info>*')
-        elements.forEach((e) => {
-            e.style.display = 'none'
-            document.querySelector('.info').innerHTML = `<p class="msg">To view information about your region, log in to <a href="../">your account</a></p>`
-        })
+        document.querySelectorAll('.info>*').forEach(e => e.style.display = 'none');
+        document.querySelector('.info').innerHTML = `<p class="msg">To view information about your region, log in to <a href="../">your account</a></p>`;
     }
 })
 
@@ -106,13 +103,9 @@ editplace.addEventListener('click', async () => {
     }
 })
 
-closeeditplace.addEventListener('click', () => {
-    closeeditplacefun()
-})
+closeeditplace.addEventListener('click',closeeditplacefun())
 
-closeeditnick.addEventListener('click', () => {
-    closeeditnickfun()
-})
+closeeditnick.addEventListener('click', closeeditnickfun())
 
 editnick.addEventListener('click', async () => {
     if (nick.classList.contains('hidden')) {

@@ -14,10 +14,10 @@ const render = (array) => {
     timespan.append(timeimg, time)
 
     const temp = document.createElement("p")
-    temp.innerHTML = `${v.current.temperature} °C`
+    temp.innerHTML = `${v.current.temperature} °${v.location.degreetype}`
 
     const feelslike = document.createElement("p")
-    feelslike.innerHTML = `feels like: ${v.current.feelslike} °C`
+    feelslike.innerHTML = `feels like: ${v.current.feelslike} °${v.location.degreetype}`
 
     const namespan = document.createElement("span")
     const nameimg = document.createElement("img")
