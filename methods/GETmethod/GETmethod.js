@@ -1,5 +1,5 @@
-
 const answer = require('./GETmethods/getweather.js')
+
 const userdata = require("../../data/userdata.js")
 const fs = require('fs').promises;
 
@@ -27,7 +27,7 @@ async function GETmethod(req, res) {
                 earth: '../src/svg/usercard/earth.svg',
                 backarrow: '../src/svg/system/backarrow.svg',
                 name: userdata.nickname,
-                location: userdata.location
+                location: userdata.location,
             });
             break;
         case '/catalog':
@@ -54,7 +54,7 @@ async function GETmethod(req, res) {
                         secondid: 'minwind',
                     },
                 ],
-                Wind_direction: ['all', 'East','North', 'Northeast', 'Northwest', 'South', 'Southeast', 'Southwest', 'West'],
+                Wind_direction: ['all', 'East', 'North', 'Northeast', 'Northwest', 'South', 'Southeast', 'Southwest', 'West'],
                 Weather: await readData()
             });
             break;

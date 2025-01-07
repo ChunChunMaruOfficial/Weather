@@ -9,14 +9,78 @@
     rel="stylesheet">
 
 <div class="nav">
-    <a href="./map"><button><img id="back" src="../src/svg/system/backarrow.svg" alt="<-"></button></a> <button
-        id="allsearch">All</button> <input id="searchtext" placeholder="Name of country/capital" type="text"><button
-        id="filters"><img src="../src/svg/system/filters.svg" alt=""></button> <button id="searchbutton"><img
-            src="../src/svg/system/search.svg" alt=""></button>
+    <a href="./map"><button><img id="back" src="../src/svg/system/backarrow.svg" alt="<-"></button></a>
+    <button id="allsearch">All</button>
+    <button id="sorting"><img src="../src/svg/sorting/sorting.svg" alt=""></button>
+    <input id="searchtext" placeholder="Name of country/capital" type="text">
+    <button id="filters"><img src="../src/svg/system/filters.svg" alt=""></button>
+    <button id="searchbutton"><img src="../src/svg/system/search.svg" alt=""></button>
+
     <p id="count"></p>
+
+    <div class="sort">
+        <div>
+            <button id="closingsort"><img src="../src/svg/system/close.svg" alt=""></button>
+            <span>
+                <p>ASC</p>
+                <p>DESC</p>
+            </span>
+        </div>
+        <div>
+            <span>
+                <img src="../src/svg/sorting/name.svg" alt="">
+                <p>Name</p>
+            </span>
+            <span>
+                <button id="ascname"><img src="../src/svg/sorting/utilities/ascword.svg" alt=""></button>
+                <button id="descname"><img src="../src/svg/sorting/utilities/descword.svg" alt=""></button>
+            </span>
+        </div>
+        <div>
+            <span>
+                <img src="../src/svg/sorting/humidity.svg" alt="">
+                <p>Humidity</p>
+            </span>
+            <span>
+                <button id="aschumidity"><img src="../src/svg/sorting/utilities/ascnumber.svg" alt=""></button>
+                <button id="deschumidity"><img src="../src/svg/sorting/utilities/descnumber.svg" alt=""></button>
+            </span>
+        </div>
+        <div>
+            <span>
+                <img src="../src/svg/sorting/grad.svg" alt="">
+                <p>Grad</p>
+            </span>
+            <span>
+                <button id="ascgrad"><img src="../src/svg/sorting/utilities/ascnumber.svg" alt=""></button>
+                <button id="descgrad"><img src="../src/svg/sorting/utilities/descnumber.svg" alt=""></button>
+            </span>
+        </div>
+        <div>
+            <span>
+                <img src="../src/svg/sorting/feelslike.svg" alt="">
+                <p>Feelslike grad</p>
+            </span>
+            <span>
+                <button id="ascfeelslike"><img src="../src/svg/sorting/utilities/ascnumber.svg" alt=""></button>
+                <button id="descfeelslike"><img src="../src/svg/sorting/utilities/descnumber.svg" alt=""></button>
+            </span>
+        </div>
+        <div>
+            <span>
+                <img src="../src/svg/sorting/windspeed.svg" alt="">
+                <p>Windspeed</p>
+            </span>
+            <span>
+                <button id="ascwindspeed"><img src="../src/svg/sorting/utilities/ascnumber.svg" alt=""></button>
+                <button id="descwindspeed"><img src="../src/svg/sorting/utilities/descnumber.svg" alt=""></button>
+            </span>
+        </div>
+    </div>
+
     <div class="filter">
 
-        <button id="closing"><img src="../src/svg/system/close.svg" alt=""></button>
+        <button id="closingfilter"><img src="../src/svg/system/close.svg" alt=""></button>
         {{#each filter}}
         <p>{{this.name}}</p>
         <span>
@@ -41,5 +105,28 @@
         <button id="accept">Accept</button>
     </div>
 </div>
-<div id="catalogitems"><img src="../src/loading.gif" id="load" alt=""></div>
+<div id="catalogitems"><img src="../src/loading.gif" id="load" alt="">
+    {{#each content}}
+    <div>
+        <span>
+            <img src="../src/svg/weather/daystatus/black/{{this.daystatuscurrent}}.svg" alt="">
+            <p>{{this.current.observationtime}} &nbsp; | &nbsp; {{this.current.date}} ({{this.current.day}})</p>
+        </span>
+        <p>{{this.current.temperature}} °{{this.location.degreetype}}</p>
+        <p>feels like: {{this.current.feelslike}} °{{this.location.degreetype}}</p>
+        <span>
+            <img src="../src/svg/usercard/blackearth.svg" alt="">
+            <p>{{v.current.observationpoint}}</p>
+        </span>
+        <span>
+            {{#each this.paramsarray}}
+            <span>
+                <img src="{{this.imgsrc}}" alt="">
+                <p>{{this.text}}</p>
+            </span>
+            {{/each}}
+        </span>
+    </div>
+    {{/each}}
+</div>
 <script src="/script/catalog.js"></script>

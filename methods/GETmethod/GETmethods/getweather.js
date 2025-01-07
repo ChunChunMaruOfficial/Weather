@@ -3,10 +3,10 @@ const fs = require('fs').promises;
 const userdata = require('../../../data/userdata.js')
 
 
- 
+
 async function readData() {
-    const rawData = await fs.readFile('./data/allData.json', 'utf-8');
-    return JSON.parse(rawData);
+    const rawData = await fs.readFile('./data/allData.json', 'utf-8')
+    return JSON.parse(rawData)
 }
 
 function createNewWeatherItem(ans) {
@@ -21,10 +21,10 @@ function createNewWeatherItem(ans) {
         ans.daystatuscurrent = 'sun'
     }
 
-    const windstring = ans.current.winddisplay.split(' ');
+    const windstring = ans.current.winddisplay.split(' ')
     ans.tempisgrowing =
         (Number(ans.forecast[0].low) + Number(ans.forecast[0].high)) / 2 >
-        Number(ans.current.temperature);
+        Number(ans.current.temperature)
 
     ans.windstatesrc = windstring[windstring.length - 1]
 
@@ -34,31 +34,31 @@ function createNewWeatherItem(ans) {
 
 async function parsing(parseddata) {
     const answer = parseddata.map(({ capital, name }) =>
-        new Promise((resolve, reject) =>
+        new Promise((resolve) =>
             weather.find({ search: `${capital}, ${name}`, degreeType: userdata.grad }, (err, result) => {
                 if (err) {
-                    console.error('ERROR:', err, 'LOCATION:', name);
-                    reject(console.log('region load error'))
+                    console.error('ERROR:', err, 'LOCATION:', name)
+                    resolve(false)
                 } else {
-                    resolve(createNewWeatherItem(result[0]));
+                    resolve(createNewWeatherItem(result[0]))
                 }
             })
         )
     )
     try {
-        const results = await Promise.all(answer);
-        return results.filter(Boolean);
+        const results = await Promise.all(answer)
+        return results.filter(Boolean)
     } catch (error) {
-        console.error('Unhandled error:', error);
+        console.error('Unhandled error:', error)
         return [];
     }
 }
 
 async function answer(pl, res, body) {
     if (pl == undefined) {
-        const parseddata = await readData();
-        const response = await parsing(parseddata);
-        res.status(200).json(response);
+        const parseddata = await readData()
+        const response = await parsing(parseddata)
+        res.status(200).json(response)
 
     } else if (Array.isArray(pl)) {
         const response = await parsing(pl)
@@ -80,16 +80,16 @@ async function answer(pl, res, body) {
                 && (body.weather.length > 0 ? body.weather.includes(v.current.skytext) : true)
                 && (body.winddirection != 'all' ? body.winddirection == windstatesrc : true)
         });
-        
+
         res.status(200).json(filterresponse);
     } else {
         weather.find({ search: pl, degreeType: userdata.grad }, function (err, result) {
             if (err) {
                 console.error('ERROR:', err);
-                res.status(500).send('Error fetching weather data');
+                res.status(500).send('Error fetching weather data')
             } else {
-                const finalitem = createNewWeatherItem(result[0]);
-                res.status(200).send(JSON.stringify(finalitem));
+                const finalitem = createNewWeatherItem(result[0])
+                res.status(200).send(JSON.stringify(finalitem))
             }
         });
     }

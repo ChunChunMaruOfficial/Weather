@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             right.appendChild(precip);
             document.querySelector('#forecast').appendChild(card);
-        });
+       });
     } else {
         document.querySelectorAll('.info>*').forEach(e => e.style.display = 'none');
         document.querySelector('.info').innerHTML = `<p class="msg">To view information about your region, log in to <a href="../">your account</a></p>`;
@@ -130,4 +130,7 @@ editnick.addEventListener('click', async () => {
         }
     }
 })
+
+
+
 

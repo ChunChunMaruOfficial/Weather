@@ -214,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Array.from(info.children).forEach(v => v.style.display = 'none')
             loadmap.style.display = 'flex'
             info.style.display = 'flex'
+            forecastchild.classList.remove('hide')
             localweatherrequest(v.place);
         });
         bgmap.appendChild(img);

@@ -1,5 +1,7 @@
 let weatherarray = []
 const filter = document.querySelector(".filter")
+const sort = document.querySelector(".sort")
+
 const render = (array) => {
   count.innerHTML = array.length
   catalogitems.innerHTML = ''
@@ -78,7 +80,11 @@ const searchfun = async () => {
     })
   });
   const res = await req.json();
-  render(res)
+  console.log(res);
+
+  res.length === 0 ?
+    catalogitems.innerHTML = `<span><img src="../src/not-found.png" alt=""><p>Sorry, we didn't find anything</p></span>` :
+    render(res)
 }
 
 const createallweather = async () => {
@@ -101,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   checkboxes.forEach((e) => {
     e.addEventListener("click", () => {
-    const name = document.querySelector(`label[for="${e.id}"]`).innerHTML
+      const name = document.querySelector(`label[for="${e.id}"]`).innerHTML
       if (e.checked) {
         weatherarray.push(name)
       } else {
@@ -123,17 +129,39 @@ accept.addEventListener("click", () => {
   searchfun()
 })
 
-filters.addEventListener("click", () => {
-  if (filter.classList.contains('show')) {
-    filter.classList.add('hide')
-    filter.classList.remove('show')
-  } else {
-
-    filter.classList.add('show')
-    filter.classList.remove('hide')
-  }
-})
-closing.addEventListener("click", () => {
+const closefilters = () => {
   filter.classList.add('hide')
   filter.classList.remove('show')
+}
+
+filters.addEventListener("click", () => {
+  if (filter.classList.contains('show')) {
+    closefilters()
+  } else {
+    filter.classList.remove('hide')
+    filter.classList.add('show')
+    
+  }
 })
+
+closingfilter.addEventListener("click", () => {
+  closefilters()
+})
+
+const closesort = () => {
+  sort.classList.remove('showsort')
+  sort.classList.add('hidesort')
+}
+
+sorting.addEventListener("click", () => {
+  if (sort.classList.contains('showsort')) {
+    closesort()
+  } else {
+    sort.classList.remove('hidesort')
+    sort.classList.add('showsort')
+    
+
+  }
+})
+
+closingsort.addEventListener("click", () => closesort())

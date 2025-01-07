@@ -82,10 +82,9 @@ button {
     align-items: center;
 }
 
-.filter {
+.filter,
+.sort {
     position: absolute;
-    left: 102%;
-    top: 15px;
     gap: 15px;
     width: min-content;
     display: flex;
@@ -95,14 +94,45 @@ button {
     box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
     flex-direction: column;
     padding: 15px;
+
+}
+
+.filter {
+    left: 102%;
+    top: 15px;
+}
+
+.sort {
+    left: 15px;
+
+    transform: translateY(-70%);
 }
 
 
-
+.sort>div>span>img{
+    height: 26px;
+}
+.sort>div>span>p,
 .filter>p {
     font-size: 32px;
     font-weight: 700;
     line-height: 130%;
+    text-wrap: nowrap;
+}
+
+.sort>div:first-of-type {
+    justify-content: space-between;
+}
+
+.sort>div:first-of-type>span {
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.sort>div:first-of-type>span>p {
+    font-size: 20px;
 }
 
 .filter>div {
@@ -112,6 +142,8 @@ button {
     flex-wrap: wrap;
 }
 
+.sort span,
+.sort div,
 .filter span {
     display: flex;
     flex-direction: row;
@@ -121,12 +153,17 @@ button {
     gap: 10px;
 }
 
+.sort div{
+    gap: 50px;
+}
+
 .filter span>p {
     font-size: 20px;
     font-weight: 500;
+
 }
 
-#count{
+#count {
     position: absolute;
     right: 50px;
     color: rgb(255, 141, 77);
@@ -134,7 +171,14 @@ button {
     font-weight: 800;
 }
 
-#load{
+#catalogitems>span {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#catalogitems>span,
+#catalogitems>img {
     width: 150px;
     position: absolute;
     top: 50%;
@@ -167,7 +211,7 @@ button:hover {
     cursor: pointer;
 }
 
-#accept{
+#accept {
     width: -webkit-fill-available;
 }
 
@@ -184,7 +228,7 @@ button:active {
     box-shadow: 1.5px 1.5px 0px 1px rgb(30, 30, 30);
 }
 
-#catalogitems>div>span:nth-of-type(2)>p{
+#catalogitems>div>span:nth-of-type(2)>p {
     font-weight: 700;
 }
 
@@ -192,7 +236,7 @@ button:active {
     height: 16px;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
     box-shadow: 2px 2px 0px 1px rgb(30, 30, 30);
 }
 
@@ -236,34 +280,68 @@ input[type="checkbox"]{
     gap: 7px;
 }
 
-#closing{
-    position: absolute;
+#closingsort,
+#closingfilter {
     height: 40px;
     padding: 5px;
 }
 
-.show {
-    animation: showing ease-in-out .3s forwards;
+#closingfilter {
+    position: absolute;
 }
 
-@keyframes showing {
+.show {
+    animation: showingfilter ease-in-out .3s forwards;
+}
+
+@keyframes showingfilter {
     from {
         transform: translateX(0);
     }
-    to{
+
+    to {
         transform: translateX(-120%);
     }
 }
 
 .hide {
-    animation: hide ease-in-out .3s forwards;
+    animation: hidefilter ease-in-out .3s forwards;
 }
 
-@keyframes hide {
+@keyframes hidefilter {
     from {
         transform: translateX(-120%);
     }
-    to{
+
+    to {
         transform: translateX(0);
+    }
+}
+
+.showsort {
+    animation: showingsort ease-in-out .3s forwards;
+}
+
+@keyframes showingsort {
+    from {
+        transform: translateY(-70%);
+    }
+
+    to {
+        transform: translateY(180px);
+    }
+}
+
+.hidesort {
+    animation: hidesort ease-in-out .3s forwards;
+}
+
+@keyframes hidesort {
+    from {
+        transform: translateY(180px);
+    }
+
+    to {
+        transform: translateY(-70%);
     }
 }
