@@ -9,6 +9,7 @@
 }
 
 body {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +28,7 @@ body {
     width: 50%;
 }
 
-.window>div>span>input {
+input {
     transition: .3s ease-in-out;
     background: rgb(255, 222, 204);
     font-size: 24px;
@@ -41,16 +42,13 @@ body {
     width: -webkit-fill-available;
 }
 
-.window>div>span {
+.window>div>div>span {
     display: block;
     text-wrap: nowrap;
 }
 
-.window>div:first-of-type {
-    margin-block: 70px;
-}
 
-
+.window>div>div,
 .window>div {
     display: flex;
     flex-direction: column;
@@ -58,7 +56,15 @@ body {
     width: min-content;
 }
 
-.window>div>span>p {
+.window>div:first-of-type {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-block: 70px;
+}
+
+
+.window>div>div>span>p {
     font-size: 24px;
     font-weight: 600;
     line-height: 130%;
@@ -124,9 +130,45 @@ button {
     flex-direction: row;
     flex-wrap: nowrap;
     font-size: x-large;
-    color: rgb(255, 190, 153);
+    color: #FF8D4C;
     font-weight: 700;
     align-items: center;
+}
+
+#localstoragediv,
+#users {
+    display: flex;
+    flex-direction: column;
+    text-wrap: nowrap;
+    gap: 18px;
+}
+
+#users {
+    height: 164px;
+    overflow-y: auto;
+    gap: 10px;
+}
+
+#users>p {
+    padding: 5px;
+    transition: .3s ease-in-out;
+}
+
+#users>p:hover {
+    cursor: pointer;
+    background-color: rgb(255, 239, 230);
+    border-radius: 10px;
+}
+
+#localstoragediv {
+    border-left: 2px solid #FF8D4C;
+    padding-left: 45px;
+}
+
+#localstoragediv>p:first-of-type {
+    color: #FF8D4C;
+    font-weight: 700;
+    font-size: 24px;
 }
 
 input[type="checkbox"] {

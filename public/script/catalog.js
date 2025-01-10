@@ -1,8 +1,10 @@
 let weatherarray = []
 const filter = document.querySelector(".filter")
 const sort = document.querySelector(".sort")
-
+let res
 const render = (array) => {
+  console.log('called render')
+
   count.innerHTML = array.length
   catalogitems.innerHTML = ''
   array.forEach(v => {
@@ -12,7 +14,7 @@ const render = (array) => {
     const time = document.createElement("p")
 
     timeimg.src = `../src/svg/weather/daystatus/black/${v.daystatuscurrent}.svg`
-    time.innerHTML = `${v.current.observationtime} &nbsp; |  &nbsp; ${v.current.date} (${v.current.day})`
+    time.innerHTML = `${v.current.observationtime} &nbsp |  &nbsp ${v.current.date} (${v.current.day})`
     timespan.append(timeimg, time)
 
     const temp = document.createElement("p")
@@ -55,7 +57,7 @@ const render = (array) => {
     baseinfo.append(skytextspan, humidityspan, windspan)
     item.append(timespan, temp, feelslike, namespan, baseinfo)
     catalogitems.appendChild(item)
-  });
+  })
 }
 
 const searchfun = async () => {
@@ -78,9 +80,9 @@ const searchfun = async () => {
       weather: weatherarray,
       winddirection: Wind_direction.value
     })
-  });
-  const res = await req.json();
-  console.log(res);
+  })
+  res = await req.json()
+  console.log(res)
 
   res.length === 0 ?
     catalogitems.innerHTML = `<span><img src="../src/not-found.png" alt=""><p>Sorry, we didn't find anything</p></span>` :
@@ -90,20 +92,22 @@ const searchfun = async () => {
 const createallweather = async () => {
   catalogitems.innerHTML = '<img src="../src/loading.gif" id="load" alt="">'
   const req = await fetch("/createallweather")
-  const res = await req.json()
+  res = await req.json()
+  console.log(res)
+
   render(res)
 }
 
 allsearch.addEventListener("click", async () => {
   searchtext.value = ''
   createallweather()
-});
+})
 
 
 document.addEventListener("DOMContentLoaded", async () => {
   createallweather()
 
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]')
 
   checkboxes.forEach((e) => {
     e.addEventListener("click", () => {
@@ -120,10 +124,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 searchbutton.addEventListener("click", () => {
   searchfun()
-});
+})
 
 accept.addEventListener("click", () => {
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0)
   filter.classList.add('hide')
   filter.classList.remove('show')
   searchfun()
@@ -140,7 +144,7 @@ filters.addEventListener("click", () => {
   } else {
     filter.classList.remove('hide')
     filter.classList.add('show')
-    
+
   }
 })
 
@@ -159,9 +163,44 @@ sorting.addEventListener("click", () => {
   } else {
     sort.classList.remove('hidesort')
     sort.classList.add('showsort')
-    
-
   }
 })
 
 closingsort.addEventListener("click", () => closesort())
+
+
+const sortingfun = (param, asc) => {
+  let newres
+  console.log(asc)
+
+  switch (asc) {
+    case true:
+      if (param == "observationpoint") {
+        newres = res.sort((a, b) => a.current[param].localeCompare(b.current[param]))
+      } else {
+        newres = res.sort((a, b) => Number(a.current[param]) - Number(b.current[param]))
+      }
+      break
+    case false:
+      if (param == "observationpoint") {
+        newres = res.sort((a, b) => b.current[param].localeCompare(a.current[param]))
+      } else {
+        newres = res.sort((a, b) => Number(b.current[param]) - Number(a.current[param]))
+      }
+      break
+  }
+  closesort()
+  render(newres)
+}
+
+document.querySelectorAll(".sort button").forEach((e) => {
+  e.addEventListener("click", () => {
+    const param = e.classList.contains("name") ? "observationpoint" :
+      e.classList.contains("humidity") ? "humidity" :
+        e.classList.contains("grad") ? "temperature" :
+          e.classList.contains("feelslike") ? "feelslike" :
+            e.classList.contains("windspeed") ? "windspeednumber" : ''
+    const asc = e.classList.contains("asc") ? true : false
+    sortingfun(param, asc)
+  })
+})

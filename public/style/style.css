@@ -15,6 +15,23 @@
     user-select: none;
 }
 
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    border-radius: 15px;
+    background-color: #12004800;
+    backdrop-filter: blur(2px);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgb(51, 51, 51);
+}
+
+/* html {
+    scrollbar-color: #a3a3c5 #0015ff00;
+    scrollbar-width: 5px;
+} */
+
 body {
     min-width: 600px;
     overflow: hidden;
@@ -169,7 +186,7 @@ button {
     background-color: rgba(0, 0, 0, .25);
 }
 
-.selected{
+.selected {
     background-color: rgba(0, 0, 0, .4);
 }
 
@@ -265,21 +282,23 @@ button {
     color: #a9a9a9;
 }
 
-#loadmap{
+#loadmap {
     width: 100px;
     margin: auto auto;
 }
-.info>span:nth-of-type(1){
+
+.info>span:nth-of-type(1) {
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
 }
-#closeinfo{
+
+#closeinfo {
     height: 20px;
     transition: .3s ease-in-out;
 }
 
-#closeinfo:hover{
+#closeinfo:hover {
     cursor: pointer;
     scale: 1.1;
 }
@@ -294,7 +313,8 @@ button {
     border: 2px solid rgb(38, 38, 38);
     box-shadow: 3px 3px 0px 1px rgb(30, 30, 30);
 }
-.info>span>span{
+
+.info>span>span {
     display: flex;
 }
 
@@ -306,8 +326,9 @@ button {
     width: min-content;
     align-items: center;
 }
+
 .info>div,
 .info>p,
-.info>span{
+.info>span {
     display: none;
 }

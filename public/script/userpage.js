@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             },
             body: JSON.stringify({ pl: locationelement.innerHTML })
         })
-
+ 
         const res = await req.json()
         console.log(res);
 
@@ -103,9 +103,9 @@ editplace.addEventListener('click', async () => {
     }
 })
 
-closeeditplace.addEventListener('click',closeeditplacefun())
+closeeditplace.addEventListener('click',() => closeeditplacefun())
 
-closeeditnick.addEventListener('click', closeeditnickfun())
+closeeditnick.addEventListener('click', () => closeeditnickfun())
 
 editnick.addEventListener('click', async () => {
     if (nick.classList.contains('hidden')) {

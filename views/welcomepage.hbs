@@ -10,24 +10,33 @@
 <div class="window">
     <p>Welcome!</p>
     <div>
-        <span>
-            <p>Please, enter your nickname here</p>
-            <img src="../src/svg/system/user.svg" alt="Nickname Icon"><input type="text" id="nicknamer" placeholder="example: ChunChunMaru">
-        </span>
-        <span>
-            <p>And enter your living place</p>
-            <img src="../src/svg/usercard/marker.svg" alt="Location Icon"><input type="text" id="place" placeholder="example: Tokyo, Japan">
-        </span>
+        <div>
+            <span>
+                <p>Please, enter your nickname here</p>
+                <img src="../src/svg/system/user.svg" alt="Nickname Icon"><input type="text" id="nicknamer"
+                    placeholder="example: ChunChunMaru">
+            </span>
+            <span>
+                <p>And enter your living place</p>
+                <img src="../src/svg/usercard/marker.svg" alt="Location Icon"><input type="text" id="place"
+                    placeholder="example: Tokyo, Japan">
+            </span>
+        </div>
+        <div id="localstoragediv">
+            <p>Maybe it's you?</p>
+            <div id="users"></div>
+        </div>
     </div>
     <div id="second">
         <span>Celsius<label><input type="checkbox" class="ios-switch green bigswitch" />
-            <div>
-                <div></div>
-            </div>
-        </label>Fahrenheit</span>
+                <div>
+                    <div></div>
+                </div>
+            </label>Fahrenheit</span>
         <div>
-        <button id="skip"><img src="../src/svg/system/cancel.svg" alt="">skip</button>
-        <button id="send"><img src="../src/svg/system/checkcircle.svg" alt=""> Enter</button>
-    </div></div>
+            <button id="skip"><img src="../src/svg/system/cancel.svg" alt="">skip</button>
+            <button id="send"><img src="../src/svg/system/checkcircle.svg" alt=""> Enter</button>
+        </div>
+    </div>
     <script src="/script/welcome.js"></script>
 </div>

@@ -27,7 +27,7 @@ function createNewWeatherItem(ans) {
         Number(ans.current.temperature)
 
     ans.windstatesrc = windstring[windstring.length - 1]
-
+    ans.current.windspeednumber = ans.current.windspeed.split(' ')[0]
 
     return ans;
 }

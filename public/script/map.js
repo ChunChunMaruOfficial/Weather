@@ -145,7 +145,8 @@ document.querySelectorAll('#points > *').forEach((v, i) => {
 
 
 
-const coordinates = [{ left: 54.7, top: 22.5, place: 'Minsk, Belarus' },
+const coordinates = [
+{ left: 54.7, top: 22.5, place: 'Minsk, Belarus' },
 { left: 89.467, top: 35.5, place: 'Tokyo, Yapan' },
 { left: 19.76, top: 44.0143, place: 'Havana, cuba' },
 { left: 24.1243, top: 27.9751, place: 'Ottawa, Canada' },
