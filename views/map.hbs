@@ -6,10 +6,11 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
+<body style="background: {{background}}">
 
 <div class="nav"> 
     {{#if nick}}
-    <h1>Hello {{nick}} from {{location}}</h1>
+    <h1>Hello {{nick}} from <span id="location">{{location}}</span></h1>
     {{/if}}
     <a href="./"><button>Enter page</button></a>
     <a href="./userpage"><button>User page</button></a>
@@ -63,3 +64,4 @@
 
 </div>
 <script src="/script/map.js"></script>
+</body>

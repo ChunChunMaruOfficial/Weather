@@ -26,23 +26,26 @@ const sendtolocal = () => {
 
 const sendinfo = async (plc, ncknmr) => {
 
-    fetch('/senduserloc', {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify({ loc: plc })
-    })
-        .then(() => fetch('/sendusernick', {
+
+    fetch('/sendusernick', {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
             body: JSON.stringify({ nick: ncknmr })
-        }))
-        .then(() => sendgrad())
-        .then(() => location.pathname += 'map')
-
+        })
+         sendgrad()
+         
+         const locationRequest = await fetch('/senduserloc', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({ loc: plc })
+        });
+        
+        let locationResponse = await locationRequest.text();
+        locationResponse != '' ? location.pathname += 'map' : alert('location is not correct')
 }
 
 

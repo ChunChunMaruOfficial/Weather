@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             },
             body: JSON.stringify({ pl: locationelement.innerHTML })
         })
- 
+
         const res = await req.json()
         console.log(res);
 
@@ -59,11 +59,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             right.appendChild(precip);
             document.querySelector('#forecast').appendChild(card);
-       });
+        });
     } else {
         document.querySelectorAll('.info>*').forEach(e => e.style.display = 'none');
+        leave.style.display = 'none'
+        showwallpaper.style.display = 'none'
         document.querySelector('.info').innerHTML = `<p class="msg">To view information about your region, log in to <a href="../">your account</a></p>`;
     }
+})
+
+leave.addEventListener('click', () => {
+    fetch('/sendusernick', {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({ nick: '' })
+    })
+    fetch('/senduserloc', {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({ loc: '' })
+    });
 })
 
 function closeeditplacefun() {
@@ -80,6 +99,31 @@ function closeeditnickfun() {
     nickimg.src = '../src/svg/system/edit.svg'
 }
 
+const wallpaper = document.querySelector('.wallpaper')
+
+showwallpaper.addEventListener('click', () => {
+    wallpaper.classList.add('show')
+    wallpaper.classList.remove('hide')
+})
+hidewallpaper.addEventListener('click', () => {
+    wallpaper.classList.remove('show')
+    wallpaper.classList.add('hide')
+})
+
+const walls = document.querySelectorAll('.wallpaper>div>div')
+
+walls.forEach((v,i) => {
+    v.addEventListener('click', ()=>{
+        fetch('/getwallpaper', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({ wallpaper: i })
+        })
+    })
+})
+
 editplace.addEventListener('click', async () => {
     if (place.classList.contains('hidden')) {
         locationelement.classList.add("hidden")
@@ -88,22 +132,25 @@ editplace.addEventListener('click', async () => {
         locationimg.src = '../src/svg/system/send.svg'
     } else {
         if (place.value) {
-            fetch('/senduserloc', {
+           const req = await fetch('/senduserloc', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify({ loc: place.value })
             })
+            const res = await req.text()
+           if(res){
+
             closeeditplacefun()
-            location.reload()
+            location.reload()}
         } else {
             alert("values isnt correct")
         }
     }
 })
 
-closeeditplace.addEventListener('click',() => closeeditplacefun())
+closeeditplace.addEventListener('click', () => closeeditplacefun())
 
 closeeditnick.addEventListener('click', () => closeeditnickfun())
 

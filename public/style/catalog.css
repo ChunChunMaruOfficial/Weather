@@ -163,12 +163,22 @@ button {
 
 }
 
-#count {
+.navspec{
     position: absolute;
-    right: 50px;
     color: rgb(255, 141, 77);
     font-size: 28px;
     font-weight: 800;
+}
+#sorttext{
+    left: 50px;
+}
+#count {
+    right: 50px;
+}
+
+#catalogitems button{
+    width: 100%;
+
 }
 
 #catalogitems>span {

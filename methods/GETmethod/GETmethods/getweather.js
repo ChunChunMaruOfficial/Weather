@@ -33,13 +33,14 @@ function createNewWeatherItem(ans) {
 }
 
 async function parsing(parseddata) {
-    const answer = parseddata.map(({ capital, name }) =>
+    const answer = parseddata.map(({ place }) =>
         new Promise((resolve) =>
-            weather.find({ search: `${capital}, ${name}`, degreeType: userdata.grad }, (err, result) => {
+            weather.find({ search: place, degreeType: userdata.grad }, (err, result) => {
                 if (err) {
-                    console.error('ERROR:', err, 'LOCATION:', name)
+                    console.error('it has been error to load: ',place)
                     resolve(false)
                 } else {
+                    result[0].current.observationpoint = place
                     resolve(createNewWeatherItem(result[0]))
                 }
             })
@@ -54,7 +55,7 @@ async function parsing(parseddata) {
     }
 }
 
-async function answer(pl, res, body) {
+async function answer(pl, res, body, callback) {
     if (pl == undefined) {
         const parseddata = await readData()
         const response = await parsing(parseddata)
@@ -85,11 +86,17 @@ async function answer(pl, res, body) {
     } else {
         weather.find({ search: pl, degreeType: userdata.grad }, function (err, result) {
             if (err) {
-                console.error('ERROR:', err);
-                res.status(500).send('Error fetching weather data')
+                console.error('ERROR:', result);
+             if(res) {res.status(500).send('Error fetching weather data')} else 
+             callback('')
             } else {
-                const finalitem = createNewWeatherItem(result[0])
-                res.status(200).send(JSON.stringify(finalitem))
+                if (res){
+                    const finalitem = createNewWeatherItem(result[0])
+                    finalitem.current.observationpoint = pl
+                    res.status(200).send(JSON.stringify(finalitem))
+                } else{
+                    callback(result[0].current.observationpoint)
+                }
             }
         });
     }

@@ -8,27 +8,46 @@
     font-style: normal;
     color: white;
 }
+
 #closeeditnick,
-#closeeditplace{
+#closeeditplace {
     margin-inline: 0;
 }
 
-.msg{
+body{
+    overflow-x: hidden;
+}
+
+body>span {
+    display: flex;
+    justify-content: space-between;
+}
+
+body>span>a {
+    display: block;
+    width: max-content;
+}
+
+body>span>a:nth-of-type(2)>button>img {
+    height: 16px;
+}
+
+.msg {
     margin-block: auto;
     font-size: 50px;
     font-weight: 700;
 }
 
-.msg>a{
+.msg>a {
     color: rgb(255, 141, 77);
     font-weight: 700;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-.visible{
+.visible {
     display: block;
 }
 
@@ -36,13 +55,12 @@
     border: 2px solid rgb(38, 38, 38);
     border-radius: 10px;
     box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
-    background: rgb(255, 141, 77);
     background: linear-gradient(273deg, rgba(255, 239, 230, 1) 0%, rgba(255, 141, 77, 0.78) 100%);
     padding: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 10px;
+    margin: 0 10px;
 }
 
 #targettime {
@@ -78,7 +96,7 @@
     height: 13px;
 }
 
-input{
+input {
     color: black;
     height: min-content;
     font-size: 24px;
@@ -89,6 +107,92 @@ input{
     box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
     padding: 10px;
     transition: .2s ease-in-out;
+}
+
+.wallpaper {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    transform: translateX(110%);
+    padding: 30px;
+    gap: 20px;
+    flex-direction: column;
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    background: rgba(255, 239, 230, 1);
+}
+
+.wallpaper p{
+    color: rgb(255, 141, 77);
+    font-weight: 700;
+    font-size: 48px;
+}
+.wallpaper>span{
+    justify-content: space-between;
+}
+
+#showwallpaper{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.show{
+    animation: showingwallpaper ease-in-out .3s forwards;
+}
+
+@keyframes showingwallpaper {
+    from{
+        transform: translateX(110%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+
+.hide{
+    animation: hideingwallpaper ease-in-out .3s forwards;
+}
+
+@keyframes hideingwallpaper {
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(110%);
+    }
+}
+
+.wallpaper>span,
+.wallpaper>div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+.wallpaper>div{
+    gap: 20px;
+}
+
+.wallpaper>div>div {
+transition: .3s ease-in-out;
+    width: 142px;
+    height: 80px;
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+}
+
+.wallpaper>div>div:hover{
+    cursor: pointer;
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
+}
+.wallpaper>div>div:active{
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0px 1px rgb(30, 30, 30);
 }
 
 input:hover,
@@ -139,11 +243,11 @@ button:active {
     flex-wrap: nowrap;
 }
 
-b{
+b {
     font-weight: bold;
 }
 
-button{
+button {
     border-radius: 10px;
     border: 1px solid black;
     box-shadow: 2px 2px 0px 1px rgb(30, 30, 30);
@@ -159,17 +263,17 @@ button{
     transition: .3s ease-in-out;
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
     transform: translate(1.5px, 1.5px);
     box-shadow: .5px .5px 0px 1px rgb(30, 30, 30);
 }
 
-#forecast>div>p{
+#forecast>div>p {
     font-size: 80px;
 }
 
-#forecast>div>div{
+#forecast>div>div {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -187,6 +291,6 @@ button:hover{
     align-items: center;
 }
 
-#forecast>div>div>p:first-of-type{
+#forecast>div>div>p:first-of-type {
     font-size: smaller;
 }

@@ -6,8 +6,10 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
-
+<span>
 <a href="./map"> <button> <img src="{{backarrow}}" alt="">map</button></a>
+<a href="./map"> <button id="leave"> <img src="{{leave}}" alt="">leave</button></a>
+</span>
 <div class="wrapper">
     <div class="info">
         <span><img src="{{nick}}" alt="">
@@ -42,20 +44,14 @@
         </span>
     </div>
 </div>
-<div id="forecast">
+<div id="forecast"></div>
+<button id="showwallpaper"><img src="../src/svg/usercard/wallpaper.svg" alt=""></button>
+<div class="wallpaper">
+    <span><p>Themes</p><button id="hidewallpaper"><img src="../src/svg/system/close.svg" alt=""></button></span>
     <div>
-        <p><b>-4.5</b></p>
-        <div>
-            <p style="color: rgb(114, 114, 114);">Tuesday &nbsp; | &nbsp; 2025-01-07</p><span><img
-                    src="../src/svg/forecastcard/maxtemp.svg">
-                <p>&nbsp; Hight temp: <b>-3</b> &nbsp; | &nbsp;</p><img src="../src/svg/forecastcard/mintemp.svg">
-                <p>&nbsp; Low temp: <b>-6</b></p>
-            </span><span><img src="../src/svg/weather/skytext/black/Partly sunny.svg">
-                <p> &nbsp; <b>Partly sunny</b></p>
-            </span><span><img src="../src/svg/forecastcard/spark.svg">
-                <p> &nbsp; Chance of precipitation: <b>2</b></p>
-            </span>
-        </div>
+    {{#each wallpapers}}
+    <div style="background: {{this}};"></div>
+    {{/each}}
     </div>
 </div>
 <script src="script/userpage.js"></script>

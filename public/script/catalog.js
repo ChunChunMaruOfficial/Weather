@@ -7,7 +7,7 @@ const render = (array) => {
 
   count.innerHTML = array.length
   catalogitems.innerHTML = ''
-  array.forEach(v => {
+  array.forEach((v,i) => {
     const item = document.createElement("div")
     const timespan = document.createElement("span")
     const timeimg = document.createElement("img")
@@ -54,8 +54,16 @@ const render = (array) => {
     wind.innerHTML = v.current.winddisplay
     windspan.append(windimg, wind)
 
+    const searchonmap = document.createElement("button")
+    searchonmap.innerHTML = 'show on map'
+
+    searchonmap.addEventListener('click', () => 
+      window.location = `../map?${'target=' + array[i].current.observationpoint}`
+    )
+
+
     baseinfo.append(skytextspan, humidityspan, windspan)
-    item.append(timespan, temp, feelslike, namespan, baseinfo)
+    item.append(timespan, temp, feelslike, namespan, baseinfo,searchonmap)
     catalogitems.appendChild(item)
   })
 }
@@ -171,8 +179,7 @@ closingsort.addEventListener("click", () => closesort())
 
 const sortingfun = (param, asc) => {
   let newres
-  console.log(asc)
-
+  sorttext.innerHTML = 'sorted by ' + param
   switch (asc) {
     case true:
       if (param == "observationpoint") {
