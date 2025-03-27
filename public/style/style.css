@@ -26,7 +26,7 @@
     background: rgb(51, 51, 51);
 }
 
-h1{
+h1 {
     text-wrap: nowrap;
 }
 
@@ -38,7 +38,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    }
+}
 
 
 .nav {
@@ -59,12 +59,13 @@ body {
     font-weight: 600;
 }
 
-.maptext{
+.maptext {
     position: absolute;
     transform: translateX(-50%);
     font-weight: 600;
-    color: rgb(255, 141, 77); 
+    color: rgb(255, 141, 77);
 }
+
 .marker {
     position: absolute;
     z-index: 0;
@@ -78,20 +79,19 @@ body {
 }
 
 button:hover {
-    transform: translate(1.5px, 1.5px);
-    box-shadow: 1.5px 1.5px 0px 1px rgb(30, 30, 30);
     cursor: pointer;
 }
 
+input:hover,
+button:hover {
+    transform: translate(1.5px, 1.5px);
+    box-shadow: 1.5px 1.5px 0px 1px rgb(30, 30, 30);
+}
+
+input:active,
 button:active {
     transform: translate(2px, 2px);
     box-shadow: 1px 1px 0px 1px rgb(30, 30, 30);
-}
-
-#plussize,
-#minussize {
-    font-size: 36px;
-    padding: 0px 14px;
 }
 
 .container {
@@ -209,8 +209,6 @@ button {
     transform: translateY(-50%);
 }
 
-.card {}
-
 .hide {
     animation: hiding ease-in-out .3s forwards;
 }
@@ -243,33 +241,93 @@ button {
     transform: scaleX(-1)
 }
 
-
 .info {
     display: none;
     align-items: center;
     position: absolute;
     bottom: 6%;
     left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    gap: 5px;
+    width: max-content;
+}
+
+.sidepanel>div>div p {
+    color: black;
+}
+
+.sidepanel>div>div {
+    display: flex;
+}
+
+.sidepanel>div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidepanel>div>div,
+.info {
     font-size: larger;
     text-wrap: nowrap;
     height: min-content;
-    width: max-content;
-    transform: translateX(-50%);
+
+
     z-index: 1;
     border: 2px solid rgb(38, 38, 38);
     border-radius: 10px;
     box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
     background: rgb(255, 255, 255);
-    padding: 10px;
+
     flex-direction: column;
     flex-wrap: nowrap;
+
+}
+
+.sidepanel>div>div>p {
+    margin: 10px;
+    font-size: small;
+    color: #a9a9a9;
+}
+
+.sidepanel>div>div>span:not(.sidepanel>div>div>span:last-of-type) {
+    display: flex;
+    flex-direction: column;
     gap: 5px;
+    padding: 10px;
+    width: calc(100% - 20px);
+    background-color: rgb(255, 222, 204);
+    ;
+}
+
+.sidepanel>div>div>span:last-of-type {
+    padding: 10px;
+}
+.sidepanel>div>div>span>span,
+.sidepanel>div>div>span:last-of-type {
+
+    gap: 10px;
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+}
+
+
+
+.sidepanel>div>div>span:last-of-type>p {
+
+    font-size: small;
+    color: #a9a9a9;
 }
 
 .info:hover {
     cursor: grab;
 }
 
+.targetplace,
 #targetplace {
     font-weight: bold;
 }
@@ -333,4 +391,83 @@ button {
 .info>p,
 .info>span {
     display: none;
+}
+
+.searchingbutton {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    position: absolute;
+    margin-block: 10px;
+    border-radius: 0 6px 6px 0;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 8px;
+    color: black;
+}
+
+.sidepanel {
+    overflow: auto;
+    transform: translateX(-105%);
+    top: 0;
+    left: 0;
+    z-index: 2;
+    position: absolute;
+    gap: 15px;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
+    flex-direction: column;
+    padding: 15px;
+    height: 90vh;
+    margin: 10px;
+
+}
+
+.sidepanel>input {
+    height: min-content;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px 1px rgb(30, 30, 30);
+    padding: 10px;
+    transition: .2s ease-in-out;
+    color: black;
+}
+
+
+
+.open {
+    animation: open ease-in-out .3s forwards;
+}
+
+.close {
+    animation: close ease-in-out .3s forwards;
+}
+
+
+@keyframes open {
+    from {
+        transform: translateX(-105%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes close {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-105%);
+    }
 }

@@ -6,6 +6,8 @@ let infostyle = info.getBoundingClientRect();
 const card = document.querySelector(".card")
 const forecastchild = document.querySelector(".forecastchild")
 const infoorange = document.querySelector('.info>span:nth-of-type(2)')
+const sidepanel = document.querySelector('.sidepanel')
+let currentsearch = document.querySelector('#currentsearch')
 let res
 let openclose
 
@@ -63,7 +65,8 @@ closeinfo.addEventListener("click", () => {
     info.style.display = 'none'
 })
 
-const localweatherrequest = async (pl) => {
+
+const serchingweather = async (pl) => {
     const req = await fetch('/serchingweather', {
         method: "POST",
         headers: {
@@ -71,8 +74,14 @@ const localweatherrequest = async (pl) => {
         },
         body: JSON.stringify({ pl: pl })
     })
-    res = await req.json()
-    console.log(res)
+    return req.json()
+}
+
+
+const localweatherrequest = async (pl) => {
+    res = await serchingweather(pl)
+    console.log(targettime);
+
     targettime.innerHTML = `${res.current.observationtime} &nbsp; |  &nbsp; ${res.current.date} (${res.current.day})`
     daystatus.src = `../src/svg/weather/daystatus/white/${res.daystatuscurrent}.svg`
     targetplace.innerText = res.current.observationpoint;
@@ -152,15 +161,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await req.json()
 
     res.forEach((v) => {
-        console.log(v);
-        
+
         if (v.left) {
             const img = document.createElement('img');
             img.style.left = `calc(${v.left}% - 8px)`;
             img.style.top = `calc(${v.top}% - 20px)`;
             url.searchParams.get('target') == v.place ?
-            img.src = '../src/svg/redmarker.svg' :
-            img.src = '../src/svg/mapmarker.svg'
+                img.src = '../src/svg/redmarker.svg' :
+                img.src = '../src/svg/mapmarker.svg'
             img.classList.add("marker");
 
             img.addEventListener('click', () => {
@@ -170,20 +178,20 @@ document.addEventListener("DOMContentLoaded", async () => {
                 forecastchild.classList.remove('hide')
                 localweatherrequest(v.place);
             });
-img.addEventListener('mouseover', () => {
-        const hoverElement = document.createElement('div');
-        hoverElement.classList.add('maptext')
-        hoverElement.textContent = v.place;
-        document.body.appendChild(hoverElement);
+            img.addEventListener('mouseover', () => {
+                const hoverElement = document.createElement('div');
+                hoverElement.classList.add('maptext')
+                hoverElement.textContent = v.place;
+                document.body.appendChild(hoverElement);
 
-        const rect = img.getBoundingClientRect();
-        hoverElement.style.top = `${rect.top - hoverElement.offsetHeight - 5 - hoverElement.getBoundingClientRect().height}px`;
-        hoverElement.style.left =`calc(${rect.left}px + 8px)`;
+                const rect = img.getBoundingClientRect();
+                hoverElement.style.top = `${rect.top - hoverElement.offsetHeight - 5 - hoverElement.getBoundingClientRect().height}px`;
+                hoverElement.style.left = `calc(${rect.left}px + 8px)`;
 
-        img.addEventListener('mouseout', () => {
-            hoverElement.remove();
-        }, { once: true });
-    });
+                img.addEventListener('mouseout', () => {
+                    hoverElement.remove();
+                }, { once: true });
+            });
 
 
             bgmap.appendChild(img);
@@ -205,5 +213,60 @@ img.addEventListener('mouseover', () => {
         }
     })
 
+
+})
+let debounce;
+
+
+
+currentsearch.addEventListener('input', (e) => {
+    clearTimeout(debounce)
+    debounce = setTimeout(async () => {
+        if (e.target.value == '') {
+            sidepanel.querySelector('div').innerHTML = ''
+            return 0
+        }
+        const req = await fetch('/serchingweather', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({ pl: e.target.value, extended: true })
+        })
+        const resitem = await req.json()
+        sidepanel.querySelector('div').innerHTML = ''
+        console.log(resitem);
+        resitem.forEach(v => {
+            sidepanel.querySelector('div').innerHTML += `<div>
+        <p class="targettime">${v.current.observationtime} &nbsp; |  &nbsp; ${v.current.date} (${v.current.day})</p>
+        <span>
+            <span><img src="../src/svg/weather/daystatus/black/${v.daystatuscurrent}.svg" class="daystatus" alt="">
+                <p class="targetplace">${v.current.observationpoint}</p>
+            </span>
+            <span><img src="${v.tempisgrowing ? '../src/svg/weather/updown/blacktemperaturearrowup.svg' : '../src/svg/weather/updown/blacktemperaturearrowdown.svg'}" class="tempstate" alt="">
+                <p class="targettemp">${v.current.temperature} °${v.location.degreetype}    &nbsp;      |    &nbsp;      feels like: ${v.current.feelslike} °${v.location.degreetype}</p>
+            </span>
+            <span><img src="../src/svg/weather/humidity/humidityblack.svg" class="humidityimg" alt="">
+                <p class="humiditytext">${v.current.humidity} %</p>
+            </span>
+            <span><img src="../src/svg/weather/skytext/black/${v.current.skytext}.svg" class="skytext" alt="">
+                <p class="targetskytext">${v.current.skytext}</p>
+            </span>
+            <span><img src="../src/svg/weather/arrows/black/${v.windstatesrc}.svg" class="windstate" alt="">
+                <p class="targetwind">${v.current.winddisplay}</p>
+            </span>
+        </span>
+        <span><img src="../src/svg/usercard/marker.svg" class="point" alt="">
+            <p class="targetlocation">lat: ${v.location.lat} | long: ${v.location.long}</p>
+        </span>
+    </div>`
+        })
+    }, 400)
+})
+
+
+document.querySelector('.searchingbutton').addEventListener('click', () => {
+    sidepanel.classList.add('open')
+    document.querySelector('.searchingbutton').classList.add('close')
 })
 
