@@ -284,7 +284,7 @@ button {
     height: 150px;
 }
 
-.sidepanel>span>p{
+.sidepanel>span>p {
     color: black;
     text-align: center;
 }
@@ -377,11 +377,19 @@ button {
     gap: 10px;
 }
 
+.compare>img {
+    position: absolute;
+    top: 5;
+    left: 5;
+}
+
+.compare>img,
 .info>span:nth-of-type(1)>img {
     height: 20px;
     transition: .3s ease-in-out;
 }
 
+.compare>img:hover,
 .info>span:nth-of-type(1)>img:hover {
     cursor: pointer;
     scale: 1.1;
@@ -431,6 +439,106 @@ button {
     color: black;
 }
 
+.compare {
+    z-index: 1;
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    align-items: center;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
+
+    padding: 20px;
+    margin: 10px;
+
+    bottom: 0;
+    right: 0;
+}
+
+.compare>div>div>span,
+.compare>span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+
+}
+.compare>div:first-of-type{
+    gap: 14px;
+    padding: 14px 3px;
+}
+.compare>div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
+
+.compare>div>img{
+    height: 18px;
+}
+
+.compare>div>div:nth-of-type(2){
+    border-radius: 10px;
+    background-color: rgb(255, 190, 153);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px 1px rgb(30, 30, 30);
+}
+
+.compare>div>div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+
+}
+
+.compare>span>div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+}
+
+.compare>div>div>span>div>p {
+    position: absolute;
+    transform: translate(5px, -3px);
+    font-size: x-small;
+}
+
+.compare p {
+    font-size: 18px;
+    color: black;
+}
+
+.compare>span:first-of-type {
+    font-size: small;
+    color: #a9a9a9;
+}
+
+.compare>span:nth-of-type(2) {
+background-color: rgb(255, 222, 204);
+border-radius: 10px;
+}
+
+.compare>span:nth-of-type(2)>img {
+    height: 20px;
+}
+
+
+.compare>span:nth-of-type(2)>p {
+    font-size: larger;
+    font-weight: 600;
+}
+
 .sidepanel {
     overflow: auto;
     transform: translateX(-105%);
@@ -441,7 +549,6 @@ button {
     gap: 15px;
     width: min-content;
     display: flex;
-    flex-direction: column;
     background: rgb(255, 255, 255);
     border: 2px solid rgb(38, 38, 38);
     border-radius: 10px;

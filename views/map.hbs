@@ -11,13 +11,39 @@
     <button class="searchingbutton">🔍</button>
     <div class="sidepanel">
         <input type="text" id="currentsearch" placeholder="city, country">
-<div></div>
-<span>
-<img src="../src/img/deepsearch.png" alt=""><p>try to find out about the weather in your town</p></span>
+        <div></div>
+        <span>
+            <img src="../src/img/deepsearch.png" alt="">
+            <p>try to find out about the weather in your town</p>
+        </span>
+    </div>
+    <div class="compare">
+        <img src="../src/svg/system/close.svg" alt="">
+
+    
+        <span>monday ~ monday</span>
+        <span><p>London</p><img src="../src/svg/map/lucideswords.svg" alt=""><p>Lisabon</p></span>
+        <div>
+            <div>
+            <img src="../src/svg/sorting/grad.svg" alt="">
+            <img src="../src/svg/sorting/humidity.svg" alt="">
+            <img src="../src/svg/weather/skytext/black/Mostly clear.svg" alt="">
+            <img src="../src/svg/sorting/windspeed.svg" alt="">
+            </div>
+            <div>
+        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
+        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
+        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
+        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
+        </div>
+    
+</div>
     </div>
     <div class="nav">
         {{#if nick}}
         <h1>Hello {{nick}} from <span id="location">{{location}}</span></h1>
+        {{else}}
+        <h1>choose any city</h1>
         {{/if}}
         <a href="./"><button>Enter page</button></a>
         <a href="./userpage"><button>User page</button></a>

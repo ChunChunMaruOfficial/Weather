@@ -9,9 +9,11 @@ const infoorange = document.querySelector('.info>span:nth-of-type(2)')
 const sidepanel = document.querySelector('.sidepanel')
 let currentsearch = document.querySelector('#currentsearch')
 const searchButton = document.querySelector('.searchingbutton')
+const nav = document.querySelector('.nav>h1')
 let res
 let openclose
-
+let comparearray = []
+let text
 
 const forecatsrender = (pagenumber) => {
     card.style.margin = ' 0 0 8px 8px'
@@ -32,20 +34,20 @@ const forecatsrender = (pagenumber) => {
     lowtemp.innerHTML += `<p>&nbsp; Low temp: <b>${res.forecast[pagenumber].low}°</b>${res.location.degreetype}</p>`
     card.append(highttemp, lowtemp)
 
-    const skytext = document.createElement('span');
-    const skyimg = document.createElement('img');
+    const skytext = document.createElement('span')
+    const skyimg = document.createElement('img')
     skyimg.src = `../src/svg/weather/skytext/black/${res.forecast[pagenumber].skytextday}.svg`
     skytext.appendChild(skyimg)
     skytext.innerHTML += ` <p> &nbsp; <b>${res.forecast[pagenumber].skytextday}</b></p>`
-    card.appendChild(skytext);
-    const precip = document.createElement('span');
-    const spark = document.createElement('img');
+    card.appendChild(skytext)
+    const precip = document.createElement('span')
+    const spark = document.createElement('img')
     spark.src = '../src/svg/forecastcard/spark.svg'
     precip.appendChild(spark)
     precip.innerHTML += ` <p> &nbsp; Chance of precipitation: <b>${res.forecast[pagenumber].precip}</b></p>`
 
-    card.appendChild(precip);
-    forecastchild.appendChild(card);
+    card.appendChild(precip)
+    forecastchild.appendChild(card)
     openclose = true
 }
 
@@ -55,15 +57,24 @@ const forecastmenuclosing = () => {
     forecastchild.classList.remove('show')
     forecastchild.classList.add('hide')
     setTimeout(() => {
-        card.innerHTML = '';
+        card.innerHTML = ''
     }, 300);
     openclose = false
+
 }
 
 closeinfo.addEventListener("click", () => {
-    forecastmenuclosing()
     forecastchild.classList.remove('hide')
     info.style.display = 'none'
+    forecastmenuclosing()
+})
+
+compare.addEventListener("click", () => {
+    forecastchild.classList.remove('hide')
+    info.style.display = 'none'
+    comparearray.push(res)
+    forecastmenuclosing()
+    nav.innerHTML = 'select city for comparison'
 })
 
 
@@ -79,9 +90,9 @@ const serchingweather = async (pl) => {
 }
 
 
-const localweatherrequest = async (pl) => {
-    res = await serchingweather(pl)
-    console.log(targettime);
+
+
+const localweatherrequest = async () => {
 
     targettime.innerHTML = `${res.current.observationtime} &nbsp; |  &nbsp; ${res.current.date} (${res.current.day})`
     daystatus.src = `../src/svg/weather/daystatus/white/${res.daystatuscurrent}.svg`
@@ -107,38 +118,38 @@ forecastmenu.addEventListener("click", () => {
     switch (openclose) {
         case true:
             forecastmenuclosing()
-            break;
+            break
         case false:
             forecatsrender(0)
             document.querySelector('.forecastmenu img').style.transform = 'none'
             forecastchild.classList.add('show')
             forecastchild.classList.remove('hide')
-            break;
+            break
     }
 })
 
 bgmap.addEventListener("click", (e) => {
-    console.log('L- ', (Math.round(((e.clientX - bgmapstyle.left) / bgmapstyle.width * 100) * 1000000) / 1000000));
-    console.log('T: ', ((Math.round(((e.clientY - bgmapstyle.top) / bgmapstyle.height * 100) * 1000000) / 1000000)) + 0.2);
+    console.log('L- ', (Math.round(((e.clientX - bgmapstyle.left) / bgmapstyle.width * 100) * 1000000) / 1000000))
+    console.log('T: ', ((Math.round(((e.clientY - bgmapstyle.top) / bgmapstyle.height * 100) * 1000000) / 1000000)) + 0.2)
 })
 
 let offsetX, offsetY;
 
 infoorange.addEventListener('mousedown', (e) => {
-    offsetX = e.clientX - info.getBoundingClientRect().left;
-    offsetY = e.clientY - info.getBoundingClientRect().top;
-    document.addEventListener('mousemove', moveElement);
-    document.addEventListener('mouseup', stopMovingElement);
+    offsetX = e.clientX - info.getBoundingClientRect().left
+    offsetY = e.clientY - info.getBoundingClientRect().top
+    document.addEventListener('mousemove', moveElement)
+    document.addEventListener('mouseup', stopMovingElement)
 });
 
 function moveElement(e) {
-    info.style.left = `${e.clientX - offsetX + 180}px`;
-    info.style.top = `${e.clientY - offsetY + 56}px`;
+    info.style.left = `${e.clientX - offsetX + 180}px`
+    info.style.top = `${e.clientY - offsetY + 56}px`
 }
 
 function stopMovingElement() {
-    document.removeEventListener('mousemove', moveElement);
-    document.removeEventListener('mouseup', stopMovingElement);
+    document.removeEventListener('mousemove', moveElement)
+    document.removeEventListener('mouseup', stopMovingElement)
 }
 
 
@@ -148,56 +159,66 @@ document.querySelectorAll('#points > *').forEach((v, i) => {
         document.querySelectorAll('#points > *').forEach((v1, i1) => {
             i == i1 ? points.children[i1].classList.add('selected') : points.children[i1].classList.remove('selected')
         })
-    });
-});
+    })
+})
 
-const overlays = document.querySelectorAll('.marker');
-const container = document.querySelector('.container');
+const overlays = document.querySelectorAll('.marker')
+const container = document.querySelector('.container')
 
 document.addEventListener("DOMContentLoaded", async () => {
     let url = new URL(window.location.href);
     openclose = false
 
-    const req = await fetch('/createmap')
-    const res = await req.json()
+    text = nav.innerText
 
-    res.forEach((v) => {
+    const req = await fetch('/createmap')
+    const result = await req.json()
+
+    result.forEach((v) => {
 
         if (v.left) {
-            const img = document.createElement('img');
-            img.style.left = `calc(${v.left}% - 8px)`;
-            img.style.top = `calc(${v.top}% - 20px)`;
+            const img = document.createElement('img')
+            img.style.left = `calc(${v.left}% - 8px)`
+            img.style.top = `calc(${v.top}% - 20px)`
             url.searchParams.get('target') == v.place ?
                 img.src = '../src/svg/redmarker.svg' :
                 img.src = '../src/svg/mapmarker.svg'
             img.classList.add("marker");
 
-            img.addEventListener('click', () => {
-                Array.from(info.children).forEach(v => v.style.display = 'none')
-                loadmap.style.display = 'flex'
-                info.style.display = 'flex'
-                forecastchild.classList.remove('hide')
-                localweatherrequest(v.place);
-            });
+            img.addEventListener('click', async () => {
+                if (comparearray.length == 0) {
+                    comparearray = []
+                    Array.from(info.children).forEach(v => v.style.display = 'none')
+                    loadmap.style.display = 'flex'
+                    info.style.display = 'flex'
+                    res = await serchingweather(v.place)
+                    forecastchild.classList.remove('hide')
+                    localweatherrequest()
+                } else {
+                    res = await serchingweather(v.place)
+                    comparearray.push(res)
+                    console.log(comparearray)
+
+                }
+            })
+
             img.addEventListener('mouseover', () => {
-                const hoverElement = document.createElement('div');
+                const hoverElement = document.createElement('div')
                 hoverElement.classList.add('maptext')
                 hoverElement.textContent = v.place;
-                document.body.appendChild(hoverElement);
+                document.body.appendChild(hoverElement)
 
-                const rect = img.getBoundingClientRect();
-                hoverElement.style.top = `${rect.top - hoverElement.offsetHeight - 5 - hoverElement.getBoundingClientRect().height}px`;
-                hoverElement.style.left = `calc(${rect.left}px + 8px)`;
+                const rect = img.getBoundingClientRect()
+                hoverElement.style.top = `${rect.top - hoverElement.offsetHeight - 5 - hoverElement.getBoundingClientRect().height}px`
+                hoverElement.style.left = `calc(${rect.left}px + 8px)`
 
                 img.addEventListener('mouseout', () => {
-                    hoverElement.remove();
-                }, { once: true });
-            });
-
-
-            bgmap.appendChild(img);
+                    hoverElement.remove()
+                }, { once: true })
+            })
+            bgmap.appendChild(img)
         }
-    });
+    })
 
 
     plussize.addEventListener("click", () => {
