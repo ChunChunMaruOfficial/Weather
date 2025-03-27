@@ -11,7 +11,7 @@ async function filtering(body, res) {
     const parseddata = await readData()
     let middle
     if (body.name) {
-        middle = parseddata.filter(v => v.name.toLowerCase().includes(body.name.toLowerCase()) || v.capital.toLowerCase().includes(body.name.toLowerCase()))
+        middle = parseddata.filter(v => v.place.toLowerCase().includes(body.name.toLowerCase()))
     }
 
 

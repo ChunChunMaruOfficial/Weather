@@ -102,18 +102,18 @@ function closeeditnickfun() {
 const wallpaper = document.querySelector('.wallpaper')
 
 showwallpaper.addEventListener('click', () => {
-    wallpaper.classList.add('show')
     wallpaper.classList.remove('hide')
+    wallpaper.classList.add('show')
 })
 hidewallpaper.addEventListener('click', () => {
-    wallpaper.classList.remove('show')
-    wallpaper.classList.add('hide')
+    wallpaper.classList.replace('show', 'hide')
 })
 
 const walls = document.querySelectorAll('.wallpaper>div>div')
 
 walls.forEach((v,i) => {
     v.addEventListener('click', ()=>{
+        wallpaper.classList.replace('show', 'hide')
         fetch('/getwallpaper', {
             method: "POST",
             headers: {

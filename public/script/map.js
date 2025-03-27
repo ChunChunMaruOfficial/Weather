@@ -8,6 +8,7 @@ const forecastchild = document.querySelector(".forecastchild")
 const infoorange = document.querySelector('.info>span:nth-of-type(2)')
 const sidepanel = document.querySelector('.sidepanel')
 let currentsearch = document.querySelector('#currentsearch')
+const searchButton = document.querySelector('.searchingbutton')
 let res
 let openclose
 
@@ -203,11 +204,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         const width = parseFloat(bgmap.style.width.slice(0, -1));
         if (width < 400) {
             bgmap.style.width = `${width + 100}%`;
+            container.style.overflowX = 'auto'
         }
     });
 
     minussize.addEventListener("click", () => {
         const width = Number((bgmap.style.width).slice(0, -1))
+        width == 200 ? container.style.overflowX = 'hidden' : ''
         if (width > 100) {
             bgmap.style.width = `${width - 100}%`
         }
@@ -222,8 +225,14 @@ let debounce;
 currentsearch.addEventListener('input', (e) => {
     clearTimeout(debounce)
     debounce = setTimeout(async () => {
+        sidepanel.querySelector('span>img').src = '../src/loadmap.gif'
+        sidepanel.querySelector('span>p').style.display = 'none'
+
         if (e.target.value == '') {
             sidepanel.querySelector('div').innerHTML = ''
+            sidepanel.querySelector('span').style.display = 'flex'
+            sidepanel.querySelector('span>p').style.display = 'block'
+            sidepanel.querySelector('span>img').src = '../src/img/deepsearch.png'
             return 0
         }
         const req = await fetch('/serchingweather', {
@@ -234,6 +243,7 @@ currentsearch.addEventListener('input', (e) => {
             body: JSON.stringify({ pl: e.target.value, extended: true })
         })
         const resitem = await req.json()
+        sidepanel.querySelector('span').style.display = 'none'
         sidepanel.querySelector('div').innerHTML = ''
         console.log(resitem);
         resitem.forEach(v => {
@@ -264,9 +274,17 @@ currentsearch.addEventListener('input', (e) => {
     }, 400)
 })
 
+document.body.addEventListener('click', (e) => {
+    if (!sidepanel.contains(e.target) && e.target !== searchButton && !searchButton.contains(e.target)) {
+        sidepanel.classList.replace('open', 'close');
+        searchButton.classList.replace('close', 'open');
+    }
+});
 
-document.querySelector('.searchingbutton').addEventListener('click', () => {
+searchButton.addEventListener('click', () => {
     sidepanel.classList.add('open')
-    document.querySelector('.searchingbutton').classList.add('close')
+    sidepanel.classList.remove('close')
+    searchButton.classList.add('close')
+    searchButton.classList.remove('open')
 })
 

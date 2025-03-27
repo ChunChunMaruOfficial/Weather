@@ -95,10 +95,9 @@ button:active {
 }
 
 .container {
-    border: 1px dashed silver;
-    width: 94%;
-    height: 94%;
-    overflow: overlay;
+    overflow-x: hidden;
+    width: 100%;
+    height: 98%;
 }
 
 .bgmap {
@@ -261,10 +260,33 @@ button {
     display: flex;
 }
 
-.sidepanel>div{
+.sidepanel>div {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+
+.sidepanel>span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.sidepanel>span>img {
+    width: 150px;
+    height: 150px;
+}
+
+.sidepanel>span>p{
+    color: black;
+    text-align: center;
 }
 
 .sidepanel>div>div,
@@ -304,6 +326,7 @@ button {
 .sidepanel>div>div>span:last-of-type {
     padding: 10px;
 }
+
 .sidepanel>div>div>span>span,
 .sidepanel>div>div>span:last-of-type {
 
@@ -351,19 +374,21 @@ button {
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
+    gap: 10px;
 }
 
-#closeinfo {
+.info>span:nth-of-type(1)>img {
     height: 20px;
     transition: .3s ease-in-out;
 }
 
-#closeinfo:hover {
+.info>span:nth-of-type(1)>img:hover {
     cursor: pointer;
     scale: 1.1;
 }
 
 .info>span:nth-of-type(2) {
+    width: -webkit-fill-available;
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 10px;
