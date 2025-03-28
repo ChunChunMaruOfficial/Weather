@@ -442,7 +442,7 @@ button {
 .compare {
     z-index: 1;
     position: absolute;
-
+    transform: translateX(110%);
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -453,7 +453,7 @@ button {
     border-radius: 10px;
     box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
 
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
 
     bottom: 0;
@@ -470,35 +470,39 @@ button {
     padding: 5px;
 
 }
-.compare>div:first-of-type{
-    gap: 14px;
-    padding: 14px 3px;
+
+.compare>div:first-of-type {
+    padding: 10px 3px;
 }
-.compare>div{
+
+.compare>div {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 5px;
 }
 
-.compare>div>img{
+.compare>div>img {
     height: 18px;
 }
 
-.compare>div>div:nth-of-type(2){
+.compare>div>div:nth-of-type(2) {
     border-radius: 10px;
     background-color: rgb(255, 190, 153);
     border: 2px solid rgb(38, 38, 38);
-    border-radius: 10px;
     box-shadow: 3px 3px 0px 1px rgb(30, 30, 30);
-}
-
-.compare>div>div{
-    display: flex;
-    flex-direction: column;
     gap: 5px;
     padding: 5px;
+}
 
+.compare>div>div:first-of-type {
+    gap: 14px;
+    padding: 14px 0px;
+}
+
+.compare>div>div {
+    display: flex;
+    flex-direction: column;
 }
 
 .compare>span>div {
@@ -510,7 +514,7 @@ button {
 
 .compare>div>div>span>div>p {
     position: absolute;
-    transform: translate(5px, -3px);
+    transform: translate(2px, -3px);
     font-size: x-small;
 }
 
@@ -525,8 +529,8 @@ button {
 }
 
 .compare>span:nth-of-type(2) {
-background-color: rgb(255, 222, 204);
-border-radius: 10px;
+    background-color: rgb(255, 222, 204);
+    border-radius: 10px;
 }
 
 .compare>span:nth-of-type(2)>img {
@@ -537,6 +541,10 @@ border-radius: 10px;
 .compare>span:nth-of-type(2)>p {
     font-size: larger;
     font-weight: 600;
+}
+
+#comparewindspeed>img{
+    height: 15px;
 }
 
 .sidepanel {
@@ -601,5 +609,35 @@ border-radius: 10px;
 
     to {
         transform: translateX(-105%);
+    }
+}
+
+
+.true {
+    animation: true ease-in-out .3s forwards;
+}
+
+.false {
+    animation: false ease-in-out .3s forwards;
+}
+
+
+@keyframes true {
+    from {
+        transform: translateX(110%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes false {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(110%);
     }
 }

@@ -7,6 +7,14 @@
     href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
 
+{{!--
+показывать город ползователя белым маркером
+заметки на дни недели
+расписание погоды в sidemenu и compare
+добавление своей метки
+"расстояние на карте" в compare
+изменение F и C в userpage --}}
+
 <body style="background: {{background}}">
     <button class="searchingbutton">🔍</button>
     <div class="sidepanel">
@@ -14,30 +22,53 @@
         <div></div>
         <span>
             <img src="../src/img/deepsearch.png" alt="">
-            <p>try to find out about the weather in your town</p>
+            <p>Try to find out about the weather in your town</p>
         </span>
     </div>
     <div class="compare">
-        <img src="../src/svg/system/close.svg" alt="">
-
-    
-        <span>monday ~ monday</span>
-        <span><p>London</p><img src="../src/svg/map/lucideswords.svg" alt=""><p>Lisabon</p></span>
+        <img id="closecompare" src="../src/svg/system/close.svg" alt="">
+        <span id="weekday"></span>
+        <span id="comparecitie">
+            <p></p><img src="../src/svg/map/lucideswords.svg" alt="">
+            <p></p>
+        </span>
         <div>
             <div>
-            <img src="../src/svg/sorting/grad.svg" alt="">
-            <img src="../src/svg/sorting/humidity.svg" alt="">
-            <img src="../src/svg/weather/skytext/black/Mostly clear.svg" alt="">
-            <img src="../src/svg/sorting/windspeed.svg" alt="">
+                <img src="../src/svg/sorting/grad.svg" alt="grad">
+                <img src="../src/svg/sorting/humidity.svg" alt="humidity">
+                <img src="../src/svg/weather/skytext/black/Mostly clear.svg" alt="weather">
+                <img src="../src/svg/sorting/windspeed.svg" alt="windspeed">
             </div>
             <div>
-        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
-        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
-        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
-        <span><p>12 C</p> <div><p>+1</p><img src="../src/svg/map/comparearrow.svg" alt=""></div> <p>13 C</p></span>
+                <span id="compareweather">
+                    <p></p>
+                    <div><img src="../src/svg/map/comparearrow.svg" alt=""></div>
+                    <p></p>
+                </span>
+                <span id="comparegrad">
+                    <p></p>
+                    <div>
+                        <p>+1</p><img src="../src/svg/map/comparearrow.svg" alt="">
+                    </div>
+                    <p></p>
+                </span>
+                <span id="comparehumidity">
+                    <p></p>
+                    <div>
+                        <p>+1</p><img src="../src/svg/map/comparearrow.svg" alt="">
+                    </div>
+                    <p></p>
+                </span>
+                <span id="comparewindspeed"><img src="" alt="">
+                    <p></p>
+                    <div>
+                        <p>+1</p><img src="../src/svg/map/comparearrow.svg" alt="">
+                    </div> <img src="" alt="">
+                    <p></p>
+                </span>
+            </div>
+
         </div>
-    
-</div>
     </div>
     <div class="nav">
         {{#if nick}}
@@ -63,7 +94,7 @@
         <span>
             <img id="closeinfo" src="../src/svg/system/close.svg" alt="">
             <p id="targettime"></p>
-            <img id="compare" src="../src/svg/map/compare.svg" alt="">
+            <img id="comparebutton" src="../src/svg/map/compare.svg" alt="">
         </span>
         <span>
             <span><img src="" id="daystatus" alt="">

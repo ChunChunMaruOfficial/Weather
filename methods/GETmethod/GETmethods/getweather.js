@@ -108,6 +108,7 @@ const answer = async (pl, res, body, callback, extended) => {
                 }
                 let finalitem
                 if (extended) {
+                    result = result.filter((v,i) => result.indexOf(v) === i && v.current.observationpoint.split(' ').length > 1);
                     finalitem = result.map(v => createNewWeatherItem(v))
                 } else {
                     finalitem = createNewWeatherItem(result[0])

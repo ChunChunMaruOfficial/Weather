@@ -10,6 +10,7 @@ const sidepanel = document.querySelector('.sidepanel')
 let currentsearch = document.querySelector('#currentsearch')
 const searchButton = document.querySelector('.searchingbutton')
 const nav = document.querySelector('.nav>h1')
+const compare = document.querySelector('.compare')
 let res
 let openclose
 let comparearray = []
@@ -69,12 +70,16 @@ closeinfo.addEventListener("click", () => {
     forecastmenuclosing()
 })
 
-compare.addEventListener("click", () => {
+comparebutton.addEventListener("click", () => {
     forecastchild.classList.remove('hide')
     info.style.display = 'none'
     comparearray.push(res)
     forecastmenuclosing()
     nav.innerHTML = 'select city for comparison'
+})
+
+closecompare.addEventListener('click', () => {
+    compare.classList.replace('true', 'false')
 })
 
 
@@ -89,7 +94,33 @@ const serchingweather = async (pl) => {
     return req.json()
 }
 
+const compareRender = () => {
+    const comparecities = comparecitie.querySelectorAll('p')
+    const comparegrads = document.querySelectorAll('#comparegrad>p')
+    const comparehumiditys = document.querySelectorAll('#comparehumidity>p')
+    const compareweathers = document.querySelectorAll('#compareweather>p')
+    const comparewindspeeds = document.querySelectorAll('#comparewindspeed>p')
+    const comparewindspeedimg = document.querySelectorAll('#comparewindspeed>img')
 
+    const gradrange = Number(comparearray[0].current.temperature) - Number(comparearray[1].current.temperature)
+    const windspeedrange = Number(comparearray[0].current.windspeednumber) - Number(comparearray[1].current.windspeednumber)
+    const humidityrange = Number(comparearray[0].current.humidity) - Number(comparearray[1].current.humidity)
+
+    weekday.innerHTML = `${comparearray[0].current.day} ~ ${comparearray[1].current.day}`
+    comparearray.forEach((v, i) => {
+        comparecities[i].innerHTML = v.current.observationpoint
+        comparegrads[i].innerHTML = `${v.current.temperature} °${v.location.degreetype} `
+        comparehumiditys[i].innerHTML = `${v.current.humidity} % `
+        compareweathers[i].innerHTML = `${v.current.skytext} `
+        comparewindspeeds[i].innerHTML = v.current.windspeed
+        comparewindspeedimg[i].src = `../src/svg/weather/arrows/black/${v.windstatesrc}.svg`
+    })
+    comparegrad.querySelector('div>p').innerHTML = (gradrange > 0 ? '-' : '+') + Math.abs(gradrange)
+    comparehumidity.querySelector('div>p').innerHTML = (humidityrange > 0 ? '-' : '+') + Math.abs(humidityrange)
+    comparewindspeed.querySelector('div>p').innerHTML = (windspeedrange > 0 ? '-' : '+') + Math.abs(windspeedrange)
+
+
+}
 
 
 const localweatherrequest = async () => {
@@ -187,7 +218,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             img.addEventListener('click', async () => {
                 if (comparearray.length == 0) {
-                    comparearray = []
+
                     Array.from(info.children).forEach(v => v.style.display = 'none')
                     loadmap.style.display = 'flex'
                     info.style.display = 'flex'
@@ -198,7 +229,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                     res = await serchingweather(v.place)
                     comparearray.push(res)
                     console.log(comparearray)
-
+                    compareRender()
+                    nav.innerText = text
+                    compare.classList.add('true')
+                    compare.classList.remove('false')
+                    comparearray = []
                 }
             })
 
