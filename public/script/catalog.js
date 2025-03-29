@@ -3,8 +3,6 @@ const filter = document.querySelector(".filter")
 const sort = document.querySelector(".sort")
 let res
 const render = (array) => {
-  console.log('called render')
-
   count.innerHTML = array.length
   catalogitems.innerHTML = ''
   array.forEach((v,i) => {
@@ -90,8 +88,6 @@ const searchfun = async () => {
     })
   })
   res = await req.json()
-  console.log(res)
-
   res.length === 0 ?
     catalogitems.innerHTML = `<span><img src="../src/not-found.png" alt=""><p>Sorry, we didn't find anything</p></span>` :
     render(res)
@@ -101,8 +97,6 @@ const createallweather = async () => {
   catalogitems.innerHTML = '<img src="../src/loading.gif" id="load" alt="">'
   const req = await fetch("/createallweather")
   res = await req.json()
-  console.log(res)
-
   render(res)
 }
 

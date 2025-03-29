@@ -14,8 +14,8 @@
     margin-inline: 0;
 }
 
-body{
-    overflow-x: hidden;
+body {
+    overflow: hidden;
 }
 
 body>span {
@@ -72,18 +72,18 @@ body>span>a:nth-of-type(2)>button>img {
     font-size: xxx-large;
 }
 
-.wrapper>div:nth-of-type(2) {
+.forecastitem {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 7px;
 }
 
-.wrapper>div:nth-of-type(2) * {
+.forecastitem * {
     color: #FF8D4C;
 }
 
-.wrapper>div:nth-of-type(2)>span {
+.forecastitem>span {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -92,7 +92,7 @@ body>span>a:nth-of-type(2)>button>img {
     align-items: center;
 }
 
-.wrapper>div:nth-of-type(2)>span>img {
+.forecastitem>span>img {
     height: 13px;
 }
 
@@ -124,60 +124,64 @@ input {
     background: rgba(255, 239, 230, 1);
 }
 
-.wallpaper p{
+.wallpaper p {
     color: rgb(255, 141, 77);
     font-weight: 700;
     font-size: 48px;
 }
-.wallpaper>span{
+
+.wallpaper>span {
     justify-content: space-between;
 }
 
-#showwallpaper{
+#showwallpaper {
     position: absolute;
     bottom: 10px;
     right: 10px;
 }
 
-.show{
+.show {
     animation: showingwallpaper ease-in-out .3s forwards;
 }
 
 @keyframes showingwallpaper {
-    from{
+    from {
         transform: translateX(110%);
     }
-    to{
+
+    to {
         transform: translateX(0%);
     }
 }
 
-.hide{
+.hide {
     animation: hideingwallpaper ease-in-out .3s forwards;
 }
 
 @keyframes hideingwallpaper {
-    from{
+    from {
         transform: translateX(0%);
     }
-    to{
+
+    to {
         transform: translateX(110%);
     }
 }
 
 .wallpaper>span,
-.wallpaper>div{
+.wallpaper>div {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
 
 }
-.wallpaper>div{
+
+.wallpaper>div {
     gap: 20px;
 }
 
 .wallpaper>div>div {
-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
     width: 142px;
     height: 80px;
     border: 1px solid rgb(38, 38, 38);
@@ -185,22 +189,22 @@ transition: .3s ease-in-out;
     box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
 }
 
-.wallpaper>div>div:hover{
+.card-front:hover,
+.wallpaper>div>div:hover {
     cursor: pointer;
     transform: translate(2px, 2px);
     box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
 }
-.wallpaper>div>div:active{
+.card-front:active,
+.wallpaper>div>div:active {
     transform: translate(4px, 4px);
     box-shadow: 2px 2px 0px 1px rgb(30, 30, 30);
 }
-
 input:hover,
 button:hover {
     transform: translate(2px, 2px);
     box-shadow: 4px 4px 0px 1px rgb(30, 30, 30);
 }
-
 input:active,
 button:active {
     transform: translate(4.5px, 4.5px);
@@ -230,10 +234,9 @@ button:active {
 
 }
 
-#forecast>div {
+.card-front {
     gap: 15px;
-    padding: 10px;
-    margin: 10px;
+transition: .3s ease-in-out;
     border: 2px solid rgb(26, 26, 26);
     border-radius: 12px;
     box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
@@ -269,28 +272,112 @@ button:hover {
     box-shadow: .5px .5px 0px 1px rgb(30, 30, 30);
 }
 
-#forecast>div>p {
+.card-front>p {
     font-size: 80px;
 }
 
-#forecast>div>div {
+.card-front>div {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 7px;
 }
 
-#forecast>div * {
+.card-front * {
     color: black;
 }
 
-#forecast>div>div>span {
+.card-front>div>span {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
 }
 
-#forecast>div>div>p:first-of-type {
+.card-front>div>p:first-of-type {
     font-size: smaller;
+}
+
+
+
+.card-container {
+    perspective: 1000px;
+    width: 450px;
+    height: 130px;
+    margin: 20px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-back {
+    border: 2px solid rgb(26, 26, 26);
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px 1px rgb(30, 30, 30);
+    background: rgb(255, 245, 240);
+    padding: 15px;
+    color: black;
+    font-size: 24px;
+    transform: rotateY(180deg)
+}
+
+.removed-card {
+    transform: rotateY(180deg);
+}
+
+.notification {
+    border-radius: 12px;
+    background: rgb(255, 245, 240);
+    padding: 10px;
+    position: absolute;
+    bottom: 20px;
+    font-weight: 500;
+    color: rgb(255, 141, 77);
+    left: 50%;
+    transform: translate(-50%, 150%);
+}
+
+.shownotification {
+    animation: shownotification forwards .3s ease-in-out;
+}
+
+.hidenotification {
+   animation: hidenotification forwards .3s ease-in-out;
+}
+
+@keyframes shownotification {
+    from {
+        transform: translate(-50%,150%);
+    }
+
+    to {
+        transform: translate(-50%,0);
+    }
+}
+
+@keyframes hidenotification {
+    from {
+        transform: translate(-50%,0);
+    }
+
+    to {
+        transform: translate(-50%,150%);
+    }
 }

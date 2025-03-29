@@ -11,6 +11,7 @@ let currentsearch = document.querySelector('#currentsearch')
 const searchButton = document.querySelector('.searchingbutton')
 const nav = document.querySelector('.nav>h1')
 const compare = document.querySelector('.compare')
+const location = document.querySelector('#location')
 let res
 let openclose
 let comparearray = []
@@ -212,8 +213,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             img.style.left = `calc(${v.left}% - 8px)`
             img.style.top = `calc(${v.top}% - 20px)`
             url.searchParams.get('target') == v.place ?
-                img.src = '../src/svg/redmarker.svg' :
-                img.src = '../src/svg/mapmarker.svg'
+                img.src = '../src/svg/map/redmarker.svg' :
+                location && v.place.includes(location.innerHTML) ?
+                img.src = '../src/svg/map/currentmarker.svg' :
+                img.src = '../src/svg/map/mapmarker.svg'
             img.classList.add("marker");
 
             img.addEventListener('click', async () => {

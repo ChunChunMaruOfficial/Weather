@@ -7,8 +7,8 @@
     href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fira+Code:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
 <span>
-<a href="./map"> <button> <img src="{{backarrow}}" alt="">map</button></a>
-<a href="./map"> <button id="leave"> <img src="{{leave}}" alt="">leave</button></a>
+    <a href="./map"> <button> <img src="{{backarrow}}" alt="">map</button></a>
+    <a href="./map"> <button id="leave"> <img src="{{leave}}" alt="">leave</button></a>
 </span>
 <div class="wrapper">
     <div class="info">
@@ -25,7 +25,8 @@
             <button class="hidden" id="closeeditplace"><img src="../src/svg/system/close.svg" alt=""></button>
         </span>
     </div>
-    <div>
+
+    <div class="forecastitem">
         <span><img id="daystatus" src="" alt="">
             <p id="targettime"></p>
         </span>
@@ -44,14 +45,20 @@
         </span>
     </div>
 </div>
+
 <div id="forecast"></div>
 <button id="showwallpaper"><img src="../src/svg/usercard/wallpaper.svg" alt=""></button>
+<div class="notification">
+    notes saved!
+</div>
 <div class="wallpaper">
-    <span><p>Themes</p><button id="hidewallpaper"><img src="../src/svg/system/close.svg" alt=""></button></span>
+    <span>
+        <p>Themes</p><button id="hidewallpaper"><img src="../src/svg/system/close.svg" alt=""></button>
+    </span>
     <div>
-    {{#each wallpapers}}
-    <div style="background: {{this}};"></div>
-    {{/each}}
+        {{#each wallpapers}}
+        <div style="background: {{this}};"></div>
+        {{/each}}
     </div>
 </div>
 <script src="script/userpage.js"></script>
